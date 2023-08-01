@@ -66,27 +66,27 @@ const Reserve = ({ setOpen, tourId }) => {
     } catch (err) {}
   };
   return (
-    <div className="reserve">
+    <div className="reserve reserve-main">
       <div className="rContainer">
         <FontAwesomeIcon
           icon={faCircleXmark}
           className="rClose"
           onClick={() => setOpen(false)}
         />
-        <span>Select your trips:</span>
+        <span className="title">Select your trips:</span>
         {data.map((item) => (
           <div className="rItem" key={item._id}>
             <div className="rItemInfo">
               <div className="rTitle">{item.title}</div>
               <div className="rDesc">{item.desc}</div>
               <div className="rMax">
-                Số khách tối đa: <b>{item.maxPeople}</b>
+                Số khách tối đa: <b>{item.maxPeople}</b>  / <b>{item.tripNumbers.length}</b> options
               </div>
-              <div className="rPrice">{item.price}</div>
+              <div className="rPrice">Giá: {item.price}</div>
             </div>
             <div className="rSelectTrips">
               {item.tripNumbers.map((tripNumber) => (
-                <div className="trip">
+                <div className="trip checkbox-wrapper-37">
                   <label>{tripNumber.number}</label>
                   <input
                     type="checkbox"

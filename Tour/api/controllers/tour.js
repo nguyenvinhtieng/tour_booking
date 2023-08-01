@@ -46,6 +46,7 @@ export const getTours = async (req, res, next) => {
       ...others,
       cheapestPrice: { $gt: min | 1, $lt: max || 999 },
     }).limit(req.query.limit);
+    console.log("Tours: ", tours.length)
     res.status(200).json(tours);
   } catch (err) {
     next(err);

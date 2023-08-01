@@ -1,3 +1,8 @@
+
+/* @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap');
+.reserve * {
+  font-family: 'Poppins', sans-serif;
+} */
 .reserve {
     width: 100vw;
     height: 100vh;
@@ -88,3 +93,70 @@
     display: flex;
     align-items: center;
   }
+
+
+.reserve-main svg{
+  font-size: 30px;
+  top: 10px;
+  right: 10px;
+  color: #7d7d7d;
+}
+.reserve-main .title{
+  font-size: 18px;
+  font-weight: bold;
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+  border-bottom: 5px solid #0071c2;
+  display: inline-block;
+}
+.reserve-main .rItem:first-child {
+  padding-top: 0;
+}
+.reserve-main .rItem{
+  display: block;
+  padding-top: 0;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ebebeb;
+  padding-top: 10px;
+}
+.reserve-main .rSelectTrips{
+  display: flex;
+  gap: 20px;
+  margin-top: 0;
+}
+.reserve-main .rSelectTrips .trip {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row-reverse;
+  margin-top: 5px;
+  margin-bottom: 0;
+}
+.reserve-main .rSelectTrips .trip label {
+  /* margin-right: 5px; */
+}
+.reserve-main .rSelectTrips .trip input {
+  margin-right: 5px;
+  width: 20px;
+  height: 20px;
+}
+.reserve-main .rTitle {
+}
+.reserve-main .rDesc {
+  font-size: 13px;
+}
+.reserve-main .rMax {
+  font-size: 11px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 5px;
+}
+.reserve-main .rPrice {
+  font-size: 13px;
+  font-weight: bold;
+  color: #0071c2;
+  text-align: right;
+  margin-top: -14px;
+}
+

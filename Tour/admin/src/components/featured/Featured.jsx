@@ -4,8 +4,27 @@ import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpOutlinedIcon from "@mui/icons-material/KeyboardArrowUpOutlined";
+import { useState } from "react";
+import { useEffect } from "react";
 
-const Featured = () => {
+const Featured = ({trips}) => {
+  const [data, setData] = useState(0);
+  let currentMonth = new Date().getMonth();
+  let currentYear = new Date().getFullYear();
+  useEffect(() => {
+    
+    let totalMoney = 0;
+    trips.forEach((trip) => {
+      if (new Date(trip.createdAt).getMonth() === currentMonth && new Date(trip.createdAt).getFullYear() === currentYear) {
+        totalMoney += trip.price;
+      }
+    });
+    setData(totalMoney);
+  }, [trips]);
+
+  const formatMoney = (money) => {
+    return money.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  }
   return (
     <div className="featured">
       <div className="top">
@@ -16,8 +35,8 @@ const Featured = () => {
         <div className="featuredChart">
           <CircularProgressbar value={70} text={"70%"} strokeWidth={5} />
         </div>
-        <p className="title">Tổng thu nhập hôm nay</p>
-        <p className="amount">3.950.000.000 VNĐ</p>
+        <p className="title">Tổng thu nhập tháng này <br /> (Tháng {currentMonth + 1} Năm {currentYear})</p>
+        <p className="amount">{formatMoney(data)} VNĐ</p>
         <p className="desc">
           Chưa bao gồm các khoản thu gần nhất.
         </p>
