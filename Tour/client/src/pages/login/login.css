@@ -1,0 +1,46 @@
+.login {
+  background-image: url('https://img6.thuthuatphanmem.vn/uploads/2022/07/19/hinh-nen-ruong-bac-thang-4k-cho-may-tinh_025251384.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+}
+.tForget{
+  color: #0071c2;
+  text-align: center;
+  font-size: 14px;
+}
+.tLogin{
+  color: #0071c2;
+  text-align: center;
+  font-size: 32px;
+  font-weight: bold;
+}
+.lContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.lInput{
+  height: 30px;
+  padding: 10px;
+}
+
+.lButton {
+  border: none;
+  padding: 10px 20px;
+  background-color: #0071c2;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.lButton:disabled{
+  background-color: #0071c28c;
+  cursor: not-allowed;
+}
