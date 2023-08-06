@@ -1,17 +1,42 @@
 import "./navbar.css";
 import { Link } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
+import axios from "axios";
+import useFetch from "../../hooks/useFetch";
 const Navbar = () => {
-  const { user } = useContext(AuthContext);
-
+  // const { user } = useContext(AuthContext);
+  // console.log("user", user)
+  const {data: user, loading, error } = useFetch("/users/get-user-info");
+  const { dispatch } = useContext(AuthContext);
+  const logout = async () => {
+    localStorage.removeItem("user");
+    let res = await axios.get("/auth/logout");
+    dispatch({ type: "LOGOUT" });
+  }
+  // useEffect(() => {
+  //   const getUser = async () => {
+  //     try {
+  //       const res = await axios.get("/auth");
+  //       setUser(res.data);
+  //     } catch (err) {
+  //       setUser(null);
+  //     }
+  //   };
+  //   getUser();
+  // }, []);
   return (
     <div className="navbar">
       <div className="navContainer">
         <Link to="/" style={{ color: "inherit", textDecoration: "none" }}>
           <span className="logo">HomaTour -  51900335</span>
         </Link>
-        {user ? user.username : (
+        {(user && user.username) ? (
+          <div className="wrapper-header">
+            <div > {user.username} </div>
+            <button className="navButton" onClick={logout}>Đăng xuất</button>
+          </div>
+        ) : (
           <div className="navItems">
               <Link to="/register" style={{ color: "inherit", textDecoration: "none" }}>
                 <button className="navButton">Đăng ký</button>

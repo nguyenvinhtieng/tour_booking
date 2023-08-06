@@ -28,3 +28,8 @@
   border-radius: 6px;
   width: 100px
 }
+.wrapper-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

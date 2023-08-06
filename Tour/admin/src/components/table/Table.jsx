@@ -7,59 +7,10 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 
-const List = () => {
-  const rows = [
-    {
-      id: 1143155,
-      product: "Sai Gon - Ha Noi",
-      img: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Thap_Rua.jpg/800px-Thap_Rua.jpg",
-      customer: "Hoàng Đoàn",
-      date: "01/03/2023",
-      amount: 785000,
-      method: "Tiền mặt",
-      status: "Approved",
-    },
-    {
-      id: 2235235,
-      product: "Sai Gon - Hue",
-      img: "https://dulich3mien.vn/wp-content/uploads/2022/01/Chua-Hue-Nghiem-@toby_ng91.jpg",
-      customer: "Hoàng Đoàn",
-      date: "01/03/2023",
-      amount: 9012000,
-      method: "Tiền mặt",
-      status: "Pending",
-    },
-    {
-      id: 2342353,
-      product: "Sai Gon - Da Nang",
-      img: "https://media.timeout.com/images/105273585/750/422/image.jpg",
-      customer: "Hoàng Đoàn",
-      date: "01/03/2023",
-      amount: 785000,
-      method: "Tiền mặt",
-      status: "Pending",
-    },
-    {
-      id: 2357741,
-      product: "Sai Gon - Nha Trang",
-      img: "https://static.vinwonders.com/2022/06/quang-truong-2-4-nha-trang.jpg",
-      customer: "Hoàng Đoàn",
-      date: "01/03/2023",
-      amount: 785000,
-      method: "Tiền mặt",
-      status: "Approved",
-    },
-    {
-      id: 2342355,
-      product: "Sai Gon - Da Lat",
-      img: "https://vnn-imgs-f.vgcloud.vn/2021/09/23/15/bien-may-mo-ao-nhu-tien-canh-o-da-lat-nhung-ngay-thang-9.jpg",
-      customer: "Hoàng Đoàn",
-      date: "01/03/2023",
-      amount: 785000,
-      method: "Tiền mặt",
-      status: "Pending",
-    },
-  ];
+const List = ({bookings}) => {
+  const latestBookings = bookings?.slice(-5);
+  if(latestBookings.length === 0) return <div className="noBookings">Không có đơn đặt tour nào</div>
+  
   return (
     <TableContainer component={Paper} className="table">
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -70,26 +21,24 @@ const List = () => {
             <TableCell className="tableCell">Khách hàng</TableCell>
             <TableCell className="tableCell">Ngày đặt</TableCell>
             <TableCell className="tableCell">Giá tiền</TableCell>
-            <TableCell className="tableCell">Phương thức</TableCell>
             <TableCell className="tableCell">Trạng thái</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <TableRow key={row.id}>
-              <TableCell className="tableCell">{row.id}</TableCell>
+          {latestBookings && latestBookings.length > 0 && latestBookings.map((row) => (
+            <TableRow key={row?._id}>
+              <TableCell className="tableCell">{row?._id}</TableCell>
               <TableCell className="tableCell">
                 <div className="cellWrapper">
-                  <img src={row.img} alt="" className="image" />
-                  {row.product}
+                  <img src={row?.tour_id?.photos[0] || "https://static.vinwonders.com/2022/06/quang-truong-2-4-nha-trang.jpg"} alt="" className="image" />
+                  {row?.tour_id.name}
                 </div>
               </TableCell>
-              <TableCell className="tableCell">{row.customer}</TableCell>
-              <TableCell className="tableCell">{row.date}</TableCell>
-              <TableCell className="tableCell">{row.amount}</TableCell>
-              <TableCell className="tableCell">{row.method}</TableCell>
+              <TableCell className="tableCell">{row?.user_id.username}</TableCell>
+              <TableCell className="tableCell">{row?.createdAt}</TableCell>
+              <TableCell className="tableCell">{row?.price}</TableCell>
               <TableCell className="tableCell">
-                <span className={`status ${row.status}`}>{row.status}</span>
+                <span className={`status ${row?.status}`}>{row?.status}</span>
               </TableCell>
             </TableRow>
           ))}

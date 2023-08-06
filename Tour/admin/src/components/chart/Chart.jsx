@@ -8,7 +8,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-const data = [
+let data = [
   { name: "January", Total: 1200 },
   { name: "February", Total: 2100 },
   { name: "March", Total: 800 },
@@ -16,8 +16,55 @@ const data = [
   { name: "May", Total: 900 },
   { name: "June", Total: 1700 },
 ];
+let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October','November','December']
 
-const Chart = ({ aspect, title }) => {
+const Chart = ({ aspect, title, bookings }) => {
+  let data = [];
+  let currentMonth = new Date().getMonth() + 1;
+  let currentYear = new Date().getFullYear();
+  let sixCurrentMonth = [];
+  for(let i = 0; i < 6; i++) {
+    if(currentMonth == 0) {
+      currentMonth = 12;
+      currentYear--;
+    }
+    sixCurrentMonth.push({
+      month: currentMonth,
+      year: currentYear
+    });
+    currentMonth--;
+  }
+  sixCurrentMonth.reverse();
+
+
+  if(bookings.length == 0) {
+    data = [
+      { name: months[sixCurrentMonth[0].month - 1], Total: 0 },
+      { name: months[sixCurrentMonth[1].month - 1], Total: 0 },
+      { name: months[sixCurrentMonth[2].month - 1], Total: 0 },
+      { name: months[sixCurrentMonth[3].month - 1], Total: 0 },
+      { name: months[sixCurrentMonth[4].month - 1], Total: 0 },
+      { name: months[sixCurrentMonth[5].month - 1], Total: 0 },
+    ];
+  } else {
+    let sixMonth = [];
+    for(let i = 0; i < 6; i++) {
+      let total = 0;
+      bookings.forEach((item) => {
+        let date = new Date(item.createdAt);
+        if(date.getMonth() + 1 == sixCurrentMonth[i].month && date.getFullYear() == sixCurrentMonth[i].year) {
+          if(item.status == 'success')
+            total += item.price;
+        }
+      });
+      sixMonth.push({
+        name: months[sixCurrentMonth[i].month - 1],
+        Total: total
+      });
+    }
+    data = sixMonth;
+  }
+
   return (
     <div className="chart">
       <div className="title">{title}</div>

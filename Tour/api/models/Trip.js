@@ -17,7 +17,7 @@ const TripSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    tripNumbers: [{ number: Number, unavailableDates: {type: [Date]}}],
+    // tripNumbers: [{ number: Number, unavailableDates: {type: [Date]}}],
   },
   { timestamps: true }
 );

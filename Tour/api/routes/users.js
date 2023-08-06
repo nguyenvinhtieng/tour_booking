@@ -4,6 +4,10 @@ import {
   deleteUser,
   getUser,
   getUsers,
+  getUserInfo,
+  addMoney,
+  getDataWallet,
+  cancelTour
 } from "../controllers/user.js";
 import { verifyAdmin, verifyToken, verifyUser } from "../utils/verifyToken.js";
 
@@ -21,6 +25,10 @@ router.get("/checkadmin/:id", verifyAdmin, (req,res,next)=>{
   res.send("hello admin, you are logged in and you can delete all accounts")
 })
 
+router.get("/get-user-info", verifyToken, getUserInfo)
+router.get("/get-data-wallet", verifyToken, getDataWallet)
+router.post("/add-money", verifyToken, addMoney)
+router.post("/cancel-tour", verifyToken, cancelTour)
 //UPDATE
 router.put("/:id", verifyUser, updateUser);
 

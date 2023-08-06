@@ -9,7 +9,7 @@ import "./style/dark.scss";
 import { useContext } from "react";
 import { DarkModeContext } from "./context/darkModeContext";
 import { AuthContext } from "./context/AuthContext";
-import { tourColumns, tripColumns, userColumns } from "./datatablesource";
+import { bookingColumns, tourColumns, tripColumns, userColumns } from "./datatablesource";
 import NewTour from "./pages/newTour/NewTour";
 import NewTrip from "./pages/newTrip/NewTrip";
 
@@ -114,6 +114,16 @@ function App() {
                 element={
                   <ProtectedRoute>
                     <NewTrip  />
+                  </ProtectedRoute>
+                }
+              />
+            </Route>
+            <Route path="booking">
+              <Route
+                index
+                element={
+                  <ProtectedRoute>
+                    <List columns={bookingColumns} />
                   </ProtectedRoute>
                 }
               />

@@ -47,3 +47,11 @@ export const login = async (req, res, next) => {
     next(err);
   }
 };
+
+export const logout = (req, res, next) => {
+  try {
+    res.clearCookie("access_token").status(200).send("Đăng xuất thành công!");
+  } catch (err) {
+    next(err);
+  }
+}

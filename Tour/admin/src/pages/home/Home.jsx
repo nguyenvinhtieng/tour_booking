@@ -14,11 +14,18 @@ const Home = () => {
   useEffect(() => {
     const getData = async () => {
       const res = await axios.get("/admin/data-dashboard");
-      console.log(res.data)
       setData(res.data);
     };
     getData();
   }, []);
+  const getEarning = () => {
+    let earning = 0;
+    data?.bookings?.forEach((item) => {
+      if(item.status == 'success')
+        earning += item.price;
+    });
+    return earning;
+  }
   return (
     <div className="home">
       <Sidebar />
@@ -27,16 +34,16 @@ const Home = () => {
         <div className="widgets">
           <Widget type="user" amount={data?.numberOfUsers || 0} />
           <Widget type="order" amount={data?.tours?.length || 0}/>
-          <Widget type="earning" amount={100}/>
-          <Widget type="balance" amount={100}/>
+          <Widget type="earning" amount={getEarning()}/>
+          <Widget type="balance" amount={data?.user?.balance || 0}/>
         </div>
         <div className="charts">
-          <Featured trips={data?.trips || []}/>
-          <Chart title="Doanh thu 6 tháng gần nhất" aspect={2 / 1} />
+          <Featured bookings={data?.bookings || []}/>
+          <Chart title="Doanh thu 6 tháng gần nhất" aspect={2 / 1} bookings={data?.bookings || []}/>
         </div>
         <div className="listContainer">
-          <div className="listTitle">Latest Transactions</div>
-          <Table />
+          <div className="listTitle">5 Latest Transactions</div>
+          <Table bookings={data?.bookings || []}/>
         </div>
       </div>
     </div>

@@ -6,6 +6,7 @@ import {
   faPerson,
   faPlane,
   faTaxi,
+  faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./header.css";
@@ -14,7 +15,7 @@ import { useContext, useState } from "react";
 import "react-date-range/dist/styles.css"; // main css file
 import "react-date-range/dist/theme/default.css"; // theme css file
 import { format } from "date-fns";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { SearchContext } from "../../context/SearchContext";
 import { AuthContext } from "../../context/AuthContext";
 
@@ -83,7 +84,14 @@ const Header = ({ type }) => {
             <FontAwesomeIcon icon={faTaxi} />
             <span>Taxi sân bay</span>
           </div>
+          {user && (
+          <Link to='/wallet' className="headerListItem">
+            <FontAwesomeIcon icon={faUser} />
+            <span>Ví của tôi</span>
+          </Link>
+          )}
         </div>
+        
         {type !== "list" && (
           <>
             <h1 className="headerTitle">

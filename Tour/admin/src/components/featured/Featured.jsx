@@ -7,20 +7,20 @@ import KeyboardArrowUpOutlinedIcon from "@mui/icons-material/KeyboardArrowUpOutl
 import { useState } from "react";
 import { useEffect } from "react";
 
-const Featured = ({trips}) => {
+const Featured = ({bookings}) => {
   const [data, setData] = useState(0);
   let currentMonth = new Date().getMonth();
   let currentYear = new Date().getFullYear();
   useEffect(() => {
-    
     let totalMoney = 0;
-    trips.forEach((trip) => {
-      if (new Date(trip.createdAt).getMonth() === currentMonth && new Date(trip.createdAt).getFullYear() === currentYear) {
-        totalMoney += trip.price;
+    bookings.forEach((booking) => {
+      if (new Date(booking.createdAt).getMonth() === currentMonth && new Date(booking.createdAt).getFullYear() === currentYear) {
+        if(booking.status === 'success')
+          totalMoney += booking.price;
       }
     });
     setData(totalMoney);
-  }, [trips]);
+  }, [bookings]);
 
   const formatMoney = (money) => {
     return money.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
@@ -41,27 +41,27 @@ const Featured = ({trips}) => {
           Chưa bao gồm các khoản thu gần nhất.
         </p>
         <div className="summary">
-          <div className="item">
+          {/* <div className="item">
             <div className="itemTitle">Mục tiêu</div>
             <div className="itemResult negative">
               <KeyboardArrowDownIcon fontSize="small"/>
               <div className="resultAmount">560.000 VNĐ</div>
             </div>
-          </div>
-          <div className="item">
+          </div> */}
+          {/* <div className="item">
             <div className="itemTitle">Tuần trước</div>
             <div className="itemResult positive">
               <KeyboardArrowUpOutlinedIcon fontSize="small"/>
               <div className="resultAmount">620.000 VNĐ</div>
             </div>
-          </div>
-          <div className="item">
+          </div> */}
+          {/* <div className="item">
             <div className="itemTitle">Tháng trước</div>
             <div className="itemResult positive">
               <KeyboardArrowUpOutlinedIcon fontSize="small"/>
               <div className="resultAmount">560.000 VNĐ</div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

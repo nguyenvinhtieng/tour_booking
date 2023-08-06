@@ -14,9 +14,15 @@ import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined
 import { Link } from "react-router-dom";
 import { DarkModeContext } from "../../context/darkModeContext";
 import { useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
 
 const Sidebar = () => {
   const { dispatch } = useContext(DarkModeContext);
+  const { dispatch: dispatchAuth } = useContext(AuthContext)
+  const logout = () => {
+    localStorage.removeItem("user")
+    dispatchAuth({type: "LOGOUT"})
+  }
   return (
     <div className="sidebar">
       <div className="top">
@@ -45,6 +51,12 @@ const Sidebar = () => {
             <li>
               <StoreIcon className="icon" />
               <span>Tour du lịch</span>
+            </li>
+          </Link>
+          <Link to="/booking" style={{ textDecoration: "none" }}>
+            <li>
+              <NotificationsNoneIcon className="icon" />
+              <span>Đặt tour</span>
             </li>
           </Link>
           <Link to="/trips" style={{ textDecoration: "none" }}>
@@ -84,7 +96,7 @@ const Sidebar = () => {
             <AccountCircleOutlinedIcon className="icon" />
             <span>Thông tin</span>
           </li>
-          <li>
+          <li onClick={logout}>
             <ExitToAppIcon className="icon" />
             <span>Đăng xuất</span>
           </li>

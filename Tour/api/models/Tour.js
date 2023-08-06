@@ -36,9 +36,9 @@ const TourSchema = new mongoose.Schema({
     min: 0,
     max: 5,
   },
-  trips: {
-    type: [String],
-  },
+  // trips: {
+  //   type: [String],
+  // },
   cheapestPrice: {
     type: Number,
     required: true,

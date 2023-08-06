@@ -27,17 +27,16 @@ const Tour = () => {
   const { data, loading, error } = useFetch(`/tours/find/${id}`);
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
-
   const { dates, options } = useContext(SearchContext);
-
   const MILLISECONDS_PER_DAY = 1000 * 60 * 60 * 24;
   function dayDifference(date1, date2) {
+    if(!date1 || !date2) return 0;
     const timeDiff = Math.abs(date2.getTime() - date1.getTime());
     const diffDays = Math.ceil(timeDiff / MILLISECONDS_PER_DAY);
     return diffDays;
   }
 
-  const days = dayDifference(dates[0].endDate, dates[0].startDate);
+  const days = dayDifference(dates[0]?.endDate, dates[0]?.startDate);
 
   const handleOpen = (i) => {
     setSlideNumber(i);
@@ -133,7 +132,7 @@ const Tour = () => {
                   Địa điểm này nằm trong danh sách những Tour đáng trải nghiệm nhất mùa hè năm 2023!
                 </span>
                 <h2>
-                  <b>{days * data.cheapestPrice * options.trip}K VNĐ</b> ({days}N{days-1}Đ)
+                  <b>{data.cheapestPrice}K VNĐ</b> ({days}N{days-1}Đ)
                 </h2>
                 <button onClick={handleClick}>Giữ chỗ và Đặt ngay!</button>
               </div>
@@ -143,7 +142,7 @@ const Tour = () => {
           <Footer />
         </div>
       )}
-      {openModal && <Reserve setOpen={setOpenModal} tourId={id}/>}
+      {openModal && data && <Reserve setOpen={setOpenModal} tourId={id} tour={data}/>}
     </div>
   );
 };

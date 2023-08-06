@@ -44,9 +44,8 @@ export const getTours = async (req, res, next) => {
   try {
     const tours = await Tour.find({
       ...others,
-      cheapestPrice: { $gt: min | 1, $lt: max || 999 },
+      cheapestPrice: { $gt: min || 1, $lt: max || 999 },
     }).limit(req.query.limit);
-    console.log("Tours: ", tours.length)
     res.status(200).json(tours);
   } catch (err) {
     next(err);
@@ -87,6 +86,7 @@ export const countByType = async (req, res, next) => {
 
 export const getTourTrips = async (req, res, next) => {
   try {
+    // console.log()
     const tour = await Tour.findById(req.params.id);
     const list = await Promise.all(
       tour.trips.map((trip) => {

@@ -83,3 +83,12 @@ export const tripColumns = [
     width: 100,
   },
 ];
+
+export const bookingColumns = [
+  { field: "_id", headerName: "ID", width: 120 },
+  { field: "user_username", headerName: "User", width: 100 },
+  { field: "tour_name", headerName: "Tour", width: 100 },
+  { field: "trip_title", headerName: "Trip", width: 100 },
+  { field: "status", headerName: "Status", width: 100 },
+  { field: "price", headerName: "price", width: 100 },
+]

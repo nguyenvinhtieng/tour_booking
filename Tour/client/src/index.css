@@ -1,0 +1,83 @@
+* {
+    /* box-sizing: border-box; */
+}
+.c-input {
+    width: 100%;
+    padding: 10px 20px;
+    border: 2px solid  #b7b7b7;
+    border-radius: 5px;
+    outline: none;
+}
+
+.c-btn-01 {
+    padding: 10px 20px;
+    background-color: #0071c2;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+    outline: none;
+}
+.c-btn-02 {
+    padding: 10px 20px;
+    background-color: #d91612;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+    outline: none;
+}
+.c-btn-gray {
+    padding: 10px 20px;
+    background-color: #666666;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+    outline: none;
+}
+.mt-10 {
+    margin-top: 10px;
+}
+.mt-30 {
+    margin-top: 30px;
+}
+.mr-5 {
+    margin-right: 5px;
+}
+.center {
+    text-align: center;
+}
+.flex-gap-10 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.table01 {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.table01 tr {}
+.table01 tr th{
+    text-align: left;
+    padding: 4px 8px;
+    border: 1px solid #ebebeb;
+}
+.table01 tr td{
+    padding: 4px 8px;
+    border: 1px solid #ebebeb;
+}
+.green {
+    color: rgb(0, 193, 42);
+    font-weight: bold;
+}
+.red {
+    color: red;
+    font-weight: bold;
+}
