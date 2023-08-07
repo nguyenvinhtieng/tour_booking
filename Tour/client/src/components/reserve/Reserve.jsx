@@ -147,7 +147,7 @@ const Reserve = ({ setOpen, tourId, tour }) => {
           </label>
           )})}
         <button onClick={handleClick} className="rButton">
-          Đặt ngay chỉ với {caculatePrice()} VNĐ ! 
+          Đặt ngay! 
         </button>
       </div>
     </div>

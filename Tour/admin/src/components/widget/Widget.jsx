@@ -52,7 +52,7 @@ const Widget = ({ type, amount }) => {
       data = {
         title: "Doanh thu",
         isMoney: true,
-        link: "View net earnings",
+        link: "Xem doanh thu",
         icon: (
           <MonetizationOnOutlinedIcon
             className="icon"
@@ -86,7 +86,7 @@ const Widget = ({ type, amount }) => {
       <div className="left">
         <span className="title">{data.title}</span>
         <span className="counter">
-          {data.isMoney && "$"} {amount}
+          {data.isMoney && "VNĐ"} {amount}
         </span>
         <span className="link">{data.link}</span>
       </div>
