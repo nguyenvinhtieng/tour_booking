@@ -11,9 +11,13 @@ export default class SlideShow extends Component {
       const settings = {
         dots: true,
         infinite: true,
-        speed: 500,
+        speed:1000,
         slidesToShow: 1,
-        slidesToScroll: 1
+        slidesToScroll: 1,
+        autoplay: true, // Tự động chuyển ảnh
+        autoplaySpeed: 3000, // Thời gian chờ mỗi lần chuyển ảnh (2 giây)
+        fade: true, // Thêm hiệu ứng "fade"
+        cssEase: "linear", // Thêm hiệu ứng mượt mà
       };
       return (
         <div className='slide-container-custom'>
@@ -21,7 +25,7 @@ export default class SlideShow extends Component {
                 <div>
                     <div className='slider-container-main'>
                         <h3 className='slider-text'>Hello</h3>
-                        <img src="/images/slider-01.jpg" alt="" />
+                        <img src="/images/slider-03.jpg" alt="" />
                     </div>
                 </div>
                 <div>
@@ -33,7 +37,7 @@ export default class SlideShow extends Component {
                 <div>
                     <div className='slider-container-main'>
                         <h3 className='slider-text'>Hello</h3>
-                        <img src="/images/slider-03.jpg" alt="" />
+                        <img src="/images/slider-01.jpg" alt="" />
                     </div>
                 </div>
             </Slider>
