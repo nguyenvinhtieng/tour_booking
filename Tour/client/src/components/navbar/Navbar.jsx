@@ -1,18 +1,22 @@
 import "./navbar.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import axios from "axios";
 import useFetch from "../../hooks/useFetch";
+
 const Navbar = () => {
   // const { user } = useContext(AuthContext);
   // console.log("user", user)
   const {data: user, loading, error } = useFetch("/users/get-user-info");
   const { dispatch } = useContext(AuthContext);
+  const navigate = useNavigate();
+
   const logout = async () => {
     localStorage.removeItem("user");
     let res = await axios.get("/auth/logout");
     dispatch({ type: "LOGOUT" });
+    navigate("/login");
   }
   // useEffect(() => {
   //   const getUser = async () => {

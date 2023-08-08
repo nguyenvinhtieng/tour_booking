@@ -5,6 +5,7 @@ import Header from "../../components/header/Header";
 import MailList from "../../components/mailList/MailList";
 import Navbar from "../../components/navbar/Navbar";
 import PropertyList from "../../components/propertyList/PropertyList";
+import SlideShow from "../../components/slider/SlideShow";
 import "./home.css";
 
 const Home = () => {
@@ -14,6 +15,7 @@ const Home = () => {
       <Header/>
       <div className="homeContainer">
         <Featured/>
+        <SlideShow />
         <h1 className="homeTitle">Tìm kiểu hành trình phù hợp với bạn</h1>
         <PropertyList/>
         <h1 className="homeTitle">Top những Tour được yêu thích nhất</h1>
