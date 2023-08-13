@@ -12,6 +12,12 @@ export const userInputs = [
     placeholder: "john_doe@gmail.com",
   },
   {
+    id: "fullname",
+    label: "Fullname",
+    type: "text",
+    placeholder: "John Doe",
+  },
+  {
     id: "phone",
     label: "Phone",
     type: "text",

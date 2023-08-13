@@ -3,13 +3,24 @@ export const userColumns = [
   {
     field: "user",
     headerName: "User",
-    width: 230,
+    width: 180,
     renderCell: (params) => {
       return (
         <div className="cellWithImg">
           <img className="cellImg" src={params.row.img || "https://i.ibb.co/MBtjqXQ/no-avatar.gif"} alt="avatar" />
           {params.row.username}
         </div>
+      );
+    },
+  },
+  {
+    field: "isStaff",
+    headerName: "Role",
+    width: 100,
+    renderCell: (params) => {
+      console.log(params.row.isStaff);
+      return (
+        <span>{params.row.isStaff ? "Staff" : "User"}</span>
       );
     },
   },
@@ -57,6 +68,34 @@ export const tourColumns = [
     field: "city",
     headerName: "City",
     width: 100,
+  },
+];
+
+export const tourGuideColumns = [
+  { field: "_id", headerName: "ID", width: 150 },
+  {
+    field: "name",
+    headerName: "Name",
+    width: 150,
+    valueGetter: (params) => params.row?.tour_id?.name || ""
+  },
+  {
+    field: "type",
+    headerName: "Type",
+    width: 100,
+    valueGetter: (params) => params.row?.trip_id?.title || ""
+  },
+  {
+    field: "title",
+    headerName: "Title",
+    width: 230,
+    valueGetter: (params) => params.row?.tour_id?.title || ""
+  },
+  {
+    field: "city",
+    headerName: "City",
+    width: 100,
+    valueGetter: (params) => params.row?.tour_id?.city || ""
   },
 ];
 

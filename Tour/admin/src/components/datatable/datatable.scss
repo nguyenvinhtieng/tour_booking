@@ -76,3 +76,29 @@
     }
   }
 }
+
+
+.c-input-select {
+  width: 100%;
+  padding: 10px 20px;
+  border: 1px solid #9a9a9a;
+  border-radius: 4px;
+  outline: none;
+  margin-top: 16px;
+}
+.c-btn-submit {
+  color: #fff;
+  padding: 10px 20px;
+  margin-top: 30px;
+  border-radius: 4px;
+  background-color: #007bff;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  transition: all 0.3s ease-in-out;
+  &:hover {
+    background-color: #0069d9;
+  }
+}

@@ -2,18 +2,19 @@ import "./new.scss";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 
 const New = ({ inputs, title }) => {
   const [file, setFile] = useState("");
   const [info, setInfo] = useState({});
-
   const handleChange = (e) => {
     setInfo((prev) => ({ ...prev, [e.target.id]: e.target.value }));
   };
-
+  const navigate = useNavigate();
   const handleClick = async (e) => {
     e.preventDefault();
     const data = new FormData();
@@ -32,13 +33,13 @@ const New = ({ inputs, title }) => {
         img: url,
       };
 
-      await axios.post("/auth/register", newUser);
+      let res = await axios.post("/auth/register", newUser);
+      toast.success("Thêm người dùng thành công");
+      navigate("/users");
     } catch (err) {
-      console.log(err);
+      toast.error(err.response.data.message);
     }
   };
-
-  console.log(info);
   return (
     <div className="new">
       <Sidebar />
@@ -83,6 +84,21 @@ const New = ({ inputs, title }) => {
                   />
                 </div>
               ))}
+              <div className="formInput">
+                  <label>Role</label>
+                  <select name="" id="isStaff" onChange={handleChange}>
+                    <option value="user">User</option>
+                    <option value="staff">Staff</option>
+                  </select>
+                </div>
+                <div className="formInput">
+                  <label>Gender</label>
+                  <select name="" id="gender" onChange={handleChange}>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
               <button onClick={handleClick}>Lưu</button>
             </form>
           </div>

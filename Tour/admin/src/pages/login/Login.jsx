@@ -24,10 +24,13 @@ const Login = () => {
     dispatch({ type: "LOGIN_START" });
     try {
       const res = await axios.post("/auth/login", credentials);
-      if (res.data.isAdmin) {
+      if (res.data.isAdmin || res?.data?.details?.isStaff) {
         dispatch({ type: "LOGIN_SUCCESS", payload: res.data.details });
-
-        navigate("/");
+        if(res?.data?.details?.isStaff) {
+          navigate("/tourguide");
+        } else {
+          navigate("/");
+        }
       } else {
         dispatch({
           type: "LOGIN_FAILURE",

@@ -6,7 +6,6 @@ import Booking from "../models/Booking.js";
 
 export const addBooking = async (req, res, next) => {
   try {
-    console.log("Start booking")
     const userId = req.user.id;
     const { tour_id, trip_id } = req.body;
     const user = await User.findById(userId);
@@ -27,7 +26,7 @@ export const addBooking = async (req, res, next) => {
 
 export const getAllBookings = async (req, res, next) => {
   try {
-    let bookings = await Booking.find().populate("user_id").populate("tour_id").populate("trip_id");
+    let bookings = await Booking.find().populate("user_id").populate("tour_id").populate("trip_id").populate("tour_guide");
     bookings = [...bookings].map((booking) => {
       return {
         ...booking._doc,
