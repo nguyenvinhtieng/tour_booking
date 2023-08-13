@@ -6,6 +6,8 @@ import { useState } from "react";
 import { tourInputs } from "../../formSource";
 import useFetch from "../../hooks/useFetch";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 
 const NewTour = () => {
@@ -14,7 +16,7 @@ const NewTour = () => {
   const [trips, setTrips] = useState([]);
 
   const { data, loading, error } = useFetch("/trips");
-
+  const navigate = useNavigate();
   const handleChange = (e) => {
     setInfo((prev) => ({ ...prev, [e.target.id]: e.target.value }));
   };
@@ -27,8 +29,6 @@ const NewTour = () => {
     setTrips(value);
   };
   
-  console.log(files)
-
   const handleClick = async (e) => {
     e.preventDefault();
     try {
@@ -37,11 +37,20 @@ const NewTour = () => {
           const data = new FormData();
           data.append("file", file);
           data.append("upload_preset", "upload");
-          const uploadRes = await axios.post(
-            "https://api.cloudinary.com/v1_1/de2tmby25/image/upload",
-            data
-          );
-          const { url } = uploadRes.data;
+          
+          // const uploadRes = await axios.post(
+          //   "https://api.cloudinary.com/v1_1/de2tmby25/image/upload",
+          //   data
+          // );
+          let resU = await fetch("https://api.cloudinary.com/v1_1/de2tmby25/image/upload", {
+            method: "POST",
+            body: data,
+          })
+    
+          const uploadRes = await resU.json();
+          const { url } = uploadRes;
+
+          // const { url } = uploadRes.data;
           return url;
         })
       );
@@ -51,8 +60,9 @@ const NewTour = () => {
         trips,
         photos: list,
       };
-
-      await axios.post("/tours", newtour);
+      let res = await axios.post("/tours", newtour);
+      toast.success("Thêm tour thành công");
+      navigate("/tours");
     } catch (err) {console.log(err)}
   };
   return (

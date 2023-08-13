@@ -74,7 +74,6 @@ export const getTrip = async (req, res, next) => {
 };
 export const getTrips = async (req, res, next) => {
   try {
-    console.log("get all trip")
     const trips = await Trip.find();
     res.status(200).json(trips);
   } catch (err) {

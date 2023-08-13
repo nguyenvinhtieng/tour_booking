@@ -18,7 +18,6 @@ export const userColumns = [
     headerName: "Role",
     width: 100,
     renderCell: (params) => {
-      console.log(params.row.isStaff);
       return (
         <span>{params.row.isStaff ? "Staff" : "User"}</span>
       );
@@ -61,8 +60,12 @@ export const tourColumns = [
   },
   {
     field: "title",
-    headerName: "Title",
+    headerName: "Description",
     width: 230,
+    valueGetter: (params) => {
+      console.log(params.row);
+      return params.row?.desc || ""
+    }
   },
   {
     field: "city",

@@ -3,7 +3,6 @@ import Trip from "../models/Trip.js";
 
 export const createTour = async (req, res, next) => {
   const newTour = new Tour(req.body);
-
   try {
     const savedTour = await newTour.save();
     res.status(200).json(savedTour);
@@ -44,7 +43,7 @@ export const getTours = async (req, res, next) => {
   try {
     const tours = await Tour.find({
       ...others,
-      cheapestPrice: { $gt: min || 1, $lt: max || 999 },
+      cheapestPrice: { $gt: min || 0, $lt: max || 999999999999 },
     }).limit(req.query.limit);
     res.status(200).json(tours);
   } catch (err) {

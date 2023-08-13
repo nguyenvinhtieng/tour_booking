@@ -23,6 +23,7 @@ const Sidebar = () => {
   const { data: user } = useFetch("/users/get-user-info");
   const logout = () => {
     localStorage.removeItem("user")
+    localStorage.removeItem("token")
     dispatchAuth({type: "LOGOUT"})
   }
   return (

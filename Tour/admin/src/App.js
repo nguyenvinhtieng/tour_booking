@@ -12,7 +12,7 @@ import { AuthContext } from "./context/AuthContext";
 import { bookingColumns, tourColumns, tourGuideColumns, tripColumns, userColumns } from "./datatablesource";
 import NewTour from "./pages/newTour/NewTour";
 import NewTrip from "./pages/newTrip/NewTrip";
-
+import axios from "axios";
 function App() {
   const { darkMode } = useContext(DarkModeContext);
 
@@ -25,6 +25,19 @@ function App() {
 
     return children;
   };
+
+  // add axios interceptor to send token to server
+  axios.interceptors.request.use(
+    (config) => {
+      const token = localStorage.getItem("token");
+      config.headers.Authorization = `Bearer ${token}`;
+      return config;
+    },
+    (error) => {
+      return Promise.reject(error);
+    }
+  );
+  
 
   return (
     <div className={darkMode ? "app dark" : "app"}>

@@ -21,12 +21,20 @@ const New = ({ inputs, title }) => {
     data.append("file", file);
     data.append("upload_preset", "upload");
     try {
-      const uploadRes = await axios.post(
-        "https://api.cloudinary.com/v1_1/de2tmby25/image/upload",
-        data
-      );
+      // post without header
 
-      const { url } = uploadRes.data;
+      // let uploadRes = await axios.post(
+      //   "https://api.cloudinary.com/v1_1/de2tmby25/image/upload",
+      //   data
+      // );
+
+      let resU = await fetch("https://api.cloudinary.com/v1_1/de2tmby25/image/upload", {
+        method: "POST",
+        body: data,
+      })
+
+      const uploadRes = await resU.json();
+      const { url } = uploadRes;
 
       const newUser = {
         ...info,
@@ -37,7 +45,10 @@ const New = ({ inputs, title }) => {
       toast.success("Thêm người dùng thành công");
       navigate("/users");
     } catch (err) {
+      if(err?.response?.data?.message)
       toast.error(err.response.data.message);
+      else 
+      console.log(err)
     }
   };
   return (
