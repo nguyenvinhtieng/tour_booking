@@ -51,22 +51,25 @@ const Login = () => {
   return (
     <div className="login">
       <div className="lContainer">
+      <span className="tLogin">
+          Đăng nhập Trang Admin
+        </span>
         <input
           type="text"
-          placeholder="username"
+          placeholder="Tài khoản"
           id="username"
           onChange={handleChange}
           className="lInput"
         />
         <input
           type="password"
-          placeholder="password"
+          placeholder="Mật khẩu"
           id="password"
           onChange={handleChange}
           className="lInput"
         />
         <button disabled={loading} onClick={handleClick} className="lButton">
-          Login
+          Đăng nhập
         </button>
         {error && <span>{error.message}</span>}
       </div>
