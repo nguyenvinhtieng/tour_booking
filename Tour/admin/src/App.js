@@ -18,13 +18,21 @@ function App() {
 
   const ProtectedRoute = ({ children }) => {
     const { user } = useContext(AuthContext);
-
     if (!user) {
       return <Navigate to="/login" />;
     }
 
     return children;
   };
+
+  const AdminRoute = ({ children }) => {
+    const { user } = useContext(AuthContext);
+    if(user.role == "admin") {
+      return children;
+    } else {
+      return <Navigate to="/tourguide" />;
+    }
+  }
 
   // add axios interceptor to send token to server
   axios.interceptors.request.use(
@@ -49,7 +57,9 @@ function App() {
               index
               element={
                 <ProtectedRoute>
-                  <Home />
+                  <AdminRoute>
+                    <Home />
+                  </AdminRoute>
                 </ProtectedRoute>
               }
             />
@@ -66,7 +76,9 @@ function App() {
                 path=":userId"
                 element={
                   <ProtectedRoute>
-                    <Single />
+                    <AdminRoute>
+                      <Single />
+                    </AdminRoute>
                   </ProtectedRoute>
                 }
               />
@@ -74,7 +86,9 @@ function App() {
                 path="new"
                 element={
                   <ProtectedRoute>
-                    <New inputs={userInputs} title="Add New User" />
+                    <AdminRoute>
+                      <New inputs={userInputs} title="Add New User" />
+                    </AdminRoute>
                   </ProtectedRoute>
                 }
               />
@@ -92,7 +106,9 @@ function App() {
                 path=":productId"
                 element={
                   <ProtectedRoute>
-                    <Single />
+                    <AdminRoute>
+                      <Single />
+                    </AdminRoute>
                   </ProtectedRoute>
                 }
               />
@@ -100,7 +116,9 @@ function App() {
                 path="new"
                 element={
                   <ProtectedRoute>
-                    <NewTour  />
+                    <AdminRoute>
+                      <NewTour  />
+                    </AdminRoute>
                   </ProtectedRoute>
                 }
               />
@@ -128,7 +146,9 @@ function App() {
                 path=":productId"
                 element={
                   <ProtectedRoute>
-                    <Single />
+                    <AdminRoute>
+                      <Single />
+                    </AdminRoute>
                   </ProtectedRoute>
                 }
               />
@@ -136,7 +156,9 @@ function App() {
                 path="new"
                 element={
                   <ProtectedRoute>
-                    <NewTrip  />
+                    <AdminRoute>
+                      <NewTrip  />
+                    </AdminRoute>
                   </ProtectedRoute>
                 }
               />

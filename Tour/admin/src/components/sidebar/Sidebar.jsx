@@ -29,7 +29,7 @@ const Sidebar = () => {
   return (
     <div className="sidebar">
       <div className="top">
-        <Link to={user.isAdmin ? "/" : "/tourguide"} style={{ textDecoration: "none" }}>
+        <Link to={user.role == 'admin' ? "/" : "/tourguide"} style={{ textDecoration: "none" }}>
           <span className="logo">HomaTour</span>
         </Link>
       </div>
@@ -37,42 +37,26 @@ const Sidebar = () => {
       <div className="center">
         <ul>
           <p className="title">Chính</p>
-          <Link to={user.isAdmin ? "/" : "/tourguide"} style={{ textDecoration: "none" }}>
+          <Link to={user.role == 'admin' ? "/" : "/tourguide"} style={{ textDecoration: "none" }}>
             <li>
               <DashboardIcon className="icon" />
               <span>Dashboard</span>
             </li>
           </Link>
           <p className="title">Danh sách</p>
-          {user.isAdmin && 
-            <>
-              <Link to="/users" style={{ textDecoration: "none" }}>
-                <li>
-                  <PersonOutlineIcon className="icon" />
-                  <span>Danh sách người dùng</span>
-                </li>
-              </Link>
-              <Link to="/tours" style={{ textDecoration: "none" }}>
-                <li>
-                  <StoreIcon className="icon" />
-                  <span>Tour du lịch</span>
-                </li>
-              </Link>
-              <Link to="/booking" style={{ textDecoration: "none" }}>
-                <li>
-                  <NotificationsNoneIcon className="icon" />
-                  <span>Đặt tour</span>
-                </li>
-              </Link>
-              <Link to="/trips" style={{ textDecoration: "none" }}>
-                <li>
-                  <CreditCardIcon className="icon" />
-                  <span>Loại hình chuyến đi</span>
-                </li>
-              </Link>
-            </>
-          }
-          {user.isStaff && 
+          <Link to="/users" style={{ textDecoration: "none" }}>
+            <li>
+              <PersonOutlineIcon className="icon" />
+              <span>Danh sách người dùng</span>
+            </li>
+          </Link>
+          <Link to="/tours" style={{ textDecoration: "none" }}>
+            <li>
+              <StoreIcon className="icon" />
+              <span>Tour du lịch</span>
+            </li>
+          </Link>
+          {user.role == "staff" && 
             <Link to="/tourguide" style={{ textDecoration: "none" }}>
               <li>
                 <StoreIcon className="icon" />
@@ -80,6 +64,21 @@ const Sidebar = () => {
               </li>
             </Link>
           }
+          {user.role == "admin" && 
+            <Link to="/booking" style={{ textDecoration: "none" }}>
+              <li>
+                <NotificationsNoneIcon className="icon" />
+                <span>Đặt tour</span>
+              </li>
+            </Link>
+          }
+          <Link to="/trips" style={{ textDecoration: "none" }}>
+            <li>
+              <CreditCardIcon className="icon" />
+              <span>Loại hình chuyến đi</span>
+            </li>
+          </Link>
+          
             
           <li>
             <LocalShippingIcon className="icon" />

@@ -9,7 +9,7 @@ export const register = async (req, res, next) => {
     const hash = bcrypt.hashSync(req.body.password, salt);
     const newUser = new User({
       ...req.body,
-      isStaff: req.body.isStaff == "staff",
+      role: req.body.isStaff == "staff" ? "staff" : "user",
       password: hash,
     });
     await newUser.save();
@@ -32,17 +32,11 @@ export const login = async (req, res, next) => {
       return next(createError(400, "Tài khoản hoặc mật khẩu sai!"));
 
     const token = jwt.sign(
-      { id: user._id, isAdmin: user.isAdmin },
+      { id: user._id, role: user.role},
       process.env.JWT
     );
-
-    const { password, isAdmin, ...otherDetails } = user._doc;
-    res
-      // .cookie("access_token", token, {
-      //   httpOnly: true,
-      // })
-      .status(200)
-      .json({ details: { ...otherDetails }, isAdmin, token });
+    const { password, role, ...otherDetails } = user._doc;
+    return res.status(200).json({ details: { ...otherDetails, role }, role, token });
   } catch (err) {
     next(err);
   }

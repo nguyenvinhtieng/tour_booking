@@ -10,8 +10,7 @@ const UserSchema = new mongoose.Schema(
     city: { type: String, required: true},
     phone: { type: String, required: true},
     password: { type: String, required: true},
-    isAdmin: { type: Boolean, default: false},
-    isStaff: { type: Boolean, default: false},
+    role: { type: String, default: 'user'},
     balance: { type: Number, default: 0 }
   },
   { timestamps: true }

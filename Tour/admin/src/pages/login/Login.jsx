@@ -24,7 +24,7 @@ const Login = () => {
     dispatch({ type: "LOGIN_START" });
     try {
       const res = await axios.post("/auth/login", credentials);
-      if (res.data.isAdmin || res?.data?.details?.isStaff) {
+      if (res?.data?.role == 'admin' || res?.data?.role == "staff") {
         let token = res?.data?.token
         if(!token) {
           dispatch({ type: "LOGIN_FAILURE", payload: { message: "Sai thông tin đăng nhập hoặc tài khoản của bạn không được cấp quyền!" } });
@@ -32,7 +32,7 @@ const Login = () => {
         }
         localStorage.setItem("token", token);
         dispatch({ type: "LOGIN_SUCCESS", payload: res.data.details });
-        if(res?.data?.details?.isStaff) {
+        if(res?.data?.role == "staff") {
           navigate("/tourguide");
         } else {
           navigate("/");

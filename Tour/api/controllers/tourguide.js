@@ -32,8 +32,7 @@ export const bookingTour = async (req, res, next) => {
 
 export const getAllTourGuide = async (req, res, next) => {
     try {
-        // get all user with isStaff = true
-        let tourGuides = await User.find({ isStaff: true });
+        let tourGuides = await User.find({ role: "staff" });
         return res.status(200).json(tourGuides);
     } catch (err) {
         next(err);

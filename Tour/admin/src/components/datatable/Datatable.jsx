@@ -134,7 +134,7 @@ const Datatable = ({columns}) => {
       headerName: "Action",
       width: 200,
       renderCell: (params) => {
-        if(path == 'booking') {
+        if(path == 'booking' && user.role == "admin") {
           let row = params.row;
           return (
             <div className="cellAction">
@@ -161,6 +161,7 @@ const Datatable = ({columns}) => {
           );
         }
         if(path == 'tourguide') {
+          document.title = "Đăng ký tourguide cho tour";
           let row = params.row;
           return (
             <div className="cellAction">
@@ -174,6 +175,13 @@ const Datatable = ({columns}) => {
               </div>}
             </div>
           );
+        }
+        if(user.role == "staff") {
+          return <div className="cellAction">
+            <Link to="/users/test" style={{ textDecoration: "none" }}>
+              <div className="viewButton">Xem</div>
+            </Link>
+          </div>
         }
         return (
           <div className="cellAction">
@@ -196,9 +204,9 @@ const Datatable = ({columns}) => {
     <div className="datatable">
       <div className="datatableTitle">
         {path}
-        {!(path == 'booking' || path == 'tourguide') && <Link to={`/${path}/new`} className="link">
+        {user.role == "admin" && !(path == 'booking' || path == 'tourguide') && <Link to={`/${path}/new`} className="link">
           Thêm mới
-        </Link>}
+        </Link>}  
       </div>
       <DataGrid
         className="datagrid"

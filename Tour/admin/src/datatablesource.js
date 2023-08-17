@@ -19,7 +19,7 @@ export const userColumns = [
     width: 100,
     renderCell: (params) => {
       return (
-        <span>{params.row.isStaff ? "Staff" : "User"}</span>
+        <span>{params.row.role}</span>
       );
     },
   },
