@@ -6,6 +6,9 @@ const BookingSchema = new mongoose.Schema({
     status: { type: String, enum: ["confirming", 'success', 'canceled'], required: true, default : "confirming" },
     price: { type: Number, required: true },
     tour_guide: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+    services: { type : Array , "default" : [] },
+    discount: { type: Object },
+
 },
 {
     timestamps: true,

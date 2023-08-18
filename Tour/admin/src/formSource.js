@@ -152,3 +152,33 @@ export const tripInputs = [
     placeholder: "5",
   },
 ];
+
+export const serviceInputs = [
+  {
+    id: "title",
+    label: "Title",
+    type: "text",
+    placeholder: "Full drinks service",
+  },
+  {
+    id: "description",
+    label: "Desctiption",
+    type: "text",
+    placeholder: "Orange juice, apple juice, water, coffee, tea",
+  },
+  {
+    id: "price",
+    label: "Price",
+    type: "number",
+    placeholder: "100",
+  }
+];
+
+export const discountInputs = [
+  { id: "code", label: "Code", type: "text", placeholder: "DISCOUNT" },
+  { id: "value", label: "Value (%)", type: "number", placeholder: "10" },
+  { id: "description", label: "Description", type: "text", placeholder: "10% discount" },
+  { id: "startDate", label: "Start Date", type: "date", placeholder: "2021-01-01" },
+  { id: "endDate", label: "End Date", type: "date", placeholder: "2021-01-01" },
+  { id: "total", label: "Quantity", type: "number", placeholder: "100" },
+]

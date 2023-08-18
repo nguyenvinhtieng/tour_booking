@@ -19,6 +19,11 @@
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^7.2.4",
-    "nodemon": "^2.0.22"
+    "node-fetch": "^3.3.2",
+    "nodemon": "^2.0.22",
+    "openai": "^4.0.0",
+    "pino-pretty": "^10.2.0",
+    "poe-node-api": "^0.0.8-rc2",
+    "readline-sync": "1.4.10"
   }
 }

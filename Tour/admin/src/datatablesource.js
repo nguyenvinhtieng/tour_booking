@@ -1,3 +1,5 @@
+import { TextField } from "@mui/material";
+
 export const userColumns = [
   { field: "_id", headerName: "ID", width: 70 },
   {
@@ -131,6 +133,50 @@ export const bookingColumns = [
   { field: "user_username", headerName: "User", width: 100 },
   { field: "tour_name", headerName: "Tour", width: 100 },
   { field: "trip_title", headerName: "Trip", width: 100 },
+  { field: "services", headerName: "Service", width: 200,
+    renderCell: (cellValue) => {
+      const services = cellValue.row.services
+      let txt = services.map((service) => `${service.title} - ${service.price} VND`).join("\n")
+      return <TextField
+        value={txt}
+        InputProps={{ disableUnderline: true }}
+        multiline
+      />
+    },
+  },
+  { field: "discount", headerName: "Discount", width: 100,
+    renderCell: (params) => {
+      if(params.row.discount) {
+        return - params.row.discount.value + "%"
+      } else {
+        return "No discount"
+      }
+    }
+  },
   { field: "status", headerName: "Status", width: 100 },
   { field: "price", headerName: "price", width: 100 },
+]
+
+export const serviceColumns = [
+  { field: "_id", headerName: "ID", width: 120 },
+  { field: "title", headerName: "Title", width: 200 },
+  { field: "description", headerName: "Desctiotion", width: 300 },
+  { field: "price", headerName: "Price", width: 100 },
+]
+
+export const discountColumns = [
+  // { field: "_id", headerName: "ID", width: 120 },
+  { field: "code", headerName: "Code", width: 200 },
+  { field: "value", headerName: "Value (%)", width: 100 },
+  { field: "description", headerName: "Description", width: 200 },
+  { field: "startDate", headerName: "Start Date", width: 200 },
+  { field: "endDate", headerName: "End Date", width: 200 },
+  { field: "total", headerName: "Total", width: 100 },
+  { field: "used", headerName: "Used", width: 100 },
+  { field: "remain", headerName: "Remain", width: 100,
+    valueGetter: (params) => {
+      return params.row.total - params.row.used
+    }
+
+  },
 ]

@@ -1,0 +1,177 @@
+.chatbot {
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    z-index: 99999;
+    &.is-active {
+        .chatbot__btn {
+            display: none;
+        }
+        .chatbot__wrapper {
+            transform: scale(1);
+        }
+    }
+    &__btn {
+        cursor: pointer;
+        // width: 50px;
+        // height: 50px;
+        padding: 5px 20px;
+        gap: 10px;
+        font-size: 12px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 10px;
+        color: #fff;
+        background-color: rgb(52, 119, 221);
+        transition: all 0.2s linear;
+        position: fixed;
+        bottom: 15px;
+        right: 15px;
+        &:hover {
+            scale: 1.1;
+            opacity: 0.99;
+        }
+        svg {
+            fill: #fff;
+        }
+    }
+
+    &__wrapper {
+        width: 300px;
+        height: 450px;
+        background-color: #fff;
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+        border: 1px solid #bed4ff;
+        border-radius: 15px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        transform: scale(0);
+    }
+    &__header {
+        padding: 10px 20px;
+        display: flex;
+        align-items: center;
+        background-color: rgb(52, 119, 221);
+        color: #fff;
+        &--title {
+            flex: 1;
+        }
+        &--close {
+            width: 30px;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.2s linear;
+            border-radius: 3px;
+            &:hover {
+                background-color: rgba(255, 255, 255, 0.2);
+                opacity: 0.8;
+            }
+            svg {
+                fill: #fff;
+
+            }
+        }
+    }
+    &__content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+
+    }
+    &__message {
+        flex: 1;
+        padding: 6px;
+        max-height: 315px;
+        overflow-y: auto;
+        position: relative;
+        padding-bottom: 30px;
+        &--item {
+            padding: 6px 12px;
+            background-color: #ededed;
+            border-radius: 15px;
+            width: fit-content;
+            max-width: 70%;
+            & + .chatbot__message--item {
+                margin-top: 6px;
+            }
+            &.me {
+                background-color: rgb(52, 119, 221);
+                color: #fff;
+                margin-left: auto;
+            }
+        }
+    }
+    &__input {
+        display: flex;
+        border-top: 1px solid #808080;
+        input {
+            padding: 15px 20px;
+            outline: none;
+            border: none;
+            flex: 1;
+
+        }
+        button {
+            padding: 15px 20px;
+            border: none;
+            outline: none;
+            background-color: rgb(36, 113, 247);
+            color: #fff;
+            cursor: pointer;
+            &:hover {
+                opacity: 0.8;
+            }
+        }
+    }
+    &__thinking {
+        position: absolute;
+        bottom: 53px;
+        left: 10px;
+        display: flex;
+        align-items: center;
+        span {
+            position: relative;
+            top: -5px;
+            margin-right: 3px;
+            font-size: 12px;
+        }
+    }
+}
+
+@keyframes bounce-loader {
+    to {
+      opacity: 0.1;
+      transform: translateY(-0.5rem);
+    }
+  }
+  
+  .bounce-loading {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .bounce-loading > div {
+    width: 0.5rem;
+    height: 0.5rem;
+    margin: 0 0.1rem;
+    background: #8385aa;
+    border-radius: 50%;
+    animation: bounce-loader 0.6s infinite alternate;
+  }
+  
+  .bounce-loading > div:nth-child(2) {
+    animation-delay: 0.15s;
+  }
+  
+  .bounce-loading > div:nth-child(3) {
+    animation-delay: 0.3s;
+  }
+  
+  .bounce-loading > div:last-child {
+    animation-delay: 0.45s;
+  }

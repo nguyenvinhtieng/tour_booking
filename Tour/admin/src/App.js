@@ -4,15 +4,17 @@ import List from "./pages/list/List";
 import Single from "./pages/single/Single";
 import New from "./pages/new/New";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { productInputs, userInputs } from "./formSource";
+import { productInputs, serviceInputs, userInputs } from "./formSource";
 import "./style/dark.scss";
 import { useContext } from "react";
 import { DarkModeContext } from "./context/darkModeContext";
 import { AuthContext } from "./context/AuthContext";
-import { bookingColumns, tourColumns, tourGuideColumns, tripColumns, userColumns } from "./datatablesource";
+import { bookingColumns, discountColumns, serviceColumns, tourColumns, tourGuideColumns, tripColumns, userColumns } from "./datatablesource";
 import NewTour from "./pages/newTour/NewTour";
 import NewTrip from "./pages/newTrip/NewTrip";
 import axios from "axios";
+import NewService from "./pages/newService/NewService";
+import NewDiscount from "./pages/newDiscount/NewDiscount";
 function App() {
   const { darkMode } = useContext(DarkModeContext);
 
@@ -37,6 +39,8 @@ function App() {
   // add axios interceptor to send token to server
   axios.interceptors.request.use(
     (config) => {
+      // set default url
+      // config.baseURL = 'http://localhost:8800/api/';
       const token = localStorage.getItem("token");
       config.headers.Authorization = `Bearer ${token}`;
       return config;
@@ -88,6 +92,56 @@ function App() {
                   <ProtectedRoute>
                     <AdminRoute>
                       <New inputs={userInputs} title="Add New User" />
+                    </AdminRoute>
+                  </ProtectedRoute>
+                }
+              />
+            </Route>
+            <Route path="service">
+              <Route
+                index
+                element={
+                  <ProtectedRoute>
+                    <List columns={serviceColumns} />
+                  </ProtectedRoute>
+                }
+              />
+              {/* <Route
+                path=":userId"
+                element={
+                  <ProtectedRoute>
+                    <AdminRoute>
+                      <Single />
+                    </AdminRoute>
+                  </ProtectedRoute>
+                }
+              /> */}
+              <Route
+                path="new"
+                element={
+                  <ProtectedRoute>
+                    <AdminRoute>
+                      <NewService/>
+                    </AdminRoute>
+                  </ProtectedRoute>
+                }
+              />
+            </Route>
+            <Route path="discount">
+              <Route
+                index
+                element={
+                  <ProtectedRoute>
+                    <List columns={discountColumns} />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="new"
+                element={
+                  <ProtectedRoute>
+                    <AdminRoute>
+                      <NewDiscount/>
                     </AdminRoute>
                   </ProtectedRoute>
                 }

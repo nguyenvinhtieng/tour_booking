@@ -1,46 +1,100 @@
+import { useState } from "react";
+import "./chatbot.scss";
 import React, { useEffect } from 'react'
+import { useRef } from "react";
+import { toast } from "react-toastify";
+import axios from "axios";
+// import {PoeClient} from "poe-node-api";
+
+// const client = new PoeClient({
+//   logLevel: 'debug',
+//   cookie: 'WLTjU_x3QDBEUuoYQFGhWg%3D%3D'
+// });
+
 
 export default function ChatBot() {
+    const [isShowContent, setIsShowContent] = useState(false)
+    const [isThinking, setIsThinking] = useState(false)
+    const chatInputRef = useRef(null)
+    const [chatContents, setChatContents] = useState([
+        { id: 1, content: 'Hello, You can start a conversation now!', user: 'bot'}
+    ])
 
-    useEffect(() => {
-        const script = document.createElement("script");
-        let contentScriptTag = `
-            let __protocol = document.location.protocol;
-            let __baseUrl = __protocol + '//livechat.fpt.ai/v35/src';
-        
-            let prefixNameLiveChat = 'Bot Tour Booking';
-            let objPreDefineLiveChat = {
-                    appCode: '2e458a62a6b4ebe583f67024adcb2256',
-                    themes: '',
-                    appName: prefixNameLiveChat ? prefixNameLiveChat : 'Live support',
-                    thumb: '',
-                    icon_bot: ''
-                },
-                appCodeHash = window.location.hash.substr(1);
-            if (appCodeHash.length == 32) {
-                objPreDefineLiveChat.appCode = appCodeHash;
-            }
-        
-            let fpt_ai_livechat_script = document.createElement('script');
-            fpt_ai_livechat_script.id = 'fpt_ai_livechat_script';
-            fpt_ai_livechat_script.src = __baseUrl + '/static/fptai-livechat.js';
-            document.body.appendChild(fpt_ai_livechat_script);
-        
-            let fpt_ai_livechat_stylesheet = document.createElement('link');
-            fpt_ai_livechat_stylesheet.id = 'fpt_ai_livechat_script';
-            fpt_ai_livechat_stylesheet.rel = 'stylesheet';
-            fpt_ai_livechat_stylesheet.href = __baseUrl + '/static/fptai-livechat.css';
-            document.body.appendChild(fpt_ai_livechat_stylesheet);
-            
-            fpt_ai_livechat_script.onload = function () {
-                fpt_ai_render_chatbox(objPreDefineLiveChat, __baseUrl, 'livechat.fpt.ai:443');
-            }
-        `
 
-        script.innerHTML = contentScriptTag
-        // document.body.appendChild(script)
-        
-    }, [])
+    const toggleShowContent = () => {
+        setIsShowContent(!isShowContent)
+    }
 
-  return null
+    const handleSubmit = async () => {
+        const chatTxt = chatInputRef.current.value
+        if(!chatTxt) {
+            return;
+        }
+        if(isThinking) {
+            return;
+        }
+
+        setChatContents([...chatContents, { id: chatContents.length + 1, content: chatTxt, user: 'me'}])
+        
+        try {
+            setIsThinking(true)
+            // await client.init();
+            // const chat = await client.sendMessage(
+            //     chatInputRef.current.value, 
+            //     'hutia ', 
+            //     (result) => {
+            //         console.log({result})}
+            //     );
+            // const res = await axios.post('/chat', { message: chatTxt })
+            // console.log(res.data)
+            // setTimeout(() => {
+            //     setIsThinking(false)
+            // }, 4000)
+        } catch (error) {
+            toast.error(error.message)
+        } finally {
+            chatInputRef.current.value = ''
+            chatInputRef.current.focus()
+           
+        }
+    }
+
+  return <div className={`chatbot ${isShowContent && 'is-active'}`}>
+        <div className="chatbot__btn" onClick={toggleShowContent}>
+            <span>Start chat with Chatbot</span>
+            <svg height="30px" width="30px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 0 60 60" xmlSpace="preserve">
+                <path d="M30,1.5c-16.542,0-30,12.112-30,27c0,5.205,1.647,10.246,4.768,14.604c-0.591,6.537-2.175,11.39-4.475,13.689
+                    c-0.304,0.304-0.38,0.769-0.188,1.153C0.276,58.289,0.625,58.5,1,58.5c0.046,0,0.093-0.003,0.14-0.01
+                    c0.405-0.057,9.813-1.412,16.617-5.338C21.622,54.711,25.738,55.5,30,55.5c16.542,0,30-12.112,30-27S46.542,1.5,30,1.5z" />
+            </svg>
+        </div>
+        <div className="chatbot__wrapper">
+            <div className="chatbot__header">
+                <div className="chatbot__header--title">Chatbot</div>
+                <div className="chatbot__header--close" onClick={toggleShowContent}>
+                <svg width="25px" height="25px" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g id="Menu / Close_SM">
+                    <path id="Vector" d="M16 16L12 12M12 12L8 8M12 12L16 8M12 12L8 16" stroke="#fff" strokeWidth="2" />
+                    </g>
+                    </svg>
+                </div>
+            </div>
+            <div className="chatbot__content">
+                <div className="chatbot__message">
+                    {chatContents.map((item, index) => {
+                        return <div className={`chatbot__message--item ${item.user === 'bot' ? '' : 'me'}`} key={index}>{item.content}</div>
+                    })}
+                </div>
+                {isThinking && 
+                <div className="chatbot__thinking">
+                    <span>Bot is thinking </span>
+                    <div className="bounce-loading"><div></div><div></div><div></div><div></div></div>
+                </div>}
+                <div className="chatbot__input">
+                    <input type="text" placeholder="Nhập tin nhắn" ref={chatInputRef}/>
+                    <button onClick={handleSubmit}>Gửi</button>
+                </div>
+            </div>
+        </div>
+  </div>
 }

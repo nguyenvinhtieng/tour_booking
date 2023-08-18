@@ -2,23 +2,47 @@ import User from "../models/User.js";
 import Tour from "../models/Tour.js";
 import Trip from "../models/Trip.js";
 import Booking from "../models/Booking.js";
+// import Service from "../models/Service.js";
 // import Room from "../models/Room.js";
+import service from "../models/service.js";
+import Discount from "../models/Discount.js";
+
 
 export const addBooking = async (req, res, next) => {
   try {
     const userId = req.user.id;
-    const { tour_id, trip_id } = req.body;
+    const { tour_id, trip_id, services, discount: d } = req.body;
     const user = await User.findById(userId);
     const tour = await Tour.findById(tour_id);
     const trip = await Trip.findById(trip_id);
     let totalPrice = tour.cheapestPrice + tour.cheapestPrice * trip.price / 100;
+    let discountObj = null;
+    if(d) {
+      let discount = await Discount.findOne({ code: d });
+      let reduce = discount.value;
+      totalPrice = totalPrice - totalPrice * reduce / 100;
+      discount.used = discount.used + 1;
+      discountObj = { ...discount._doc}
+      await discount.save();
+    }
+    const selectedServices = []
+    if(services.length > 0) {
+      for(let i = 0; i < services.length; i++) {
+        const s = await service.findById(services[i]);
+        selectedServices.push(s);
+        totalPrice += s.price;
+      }
+    }
+    
     const booking = await Booking.create({
       tour_id,
       user_id: userId,
       trip_id,
       price: totalPrice,
+      services: selectedServices,
+      discount: discountObj
     });
-    res.status(200).json({ user, tour, trip, booking });
+    res.status(200).json({ user, tour, trip, booking, services: selectedServices });
   } catch (err) {
     next(err);
   }

@@ -78,6 +78,18 @@ const Sidebar = () => {
               <span>Loại hình chuyến đi</span>
             </li>
           </Link>
+          <Link to="/service" style={{ textDecoration: "none" }}>
+            <li>
+              <CreditCardIcon className="icon" />
+              <span>Dịch vụ</span>
+            </li>
+          </Link>
+          <Link to="/discount" style={{ textDecoration: "none" }}>
+            <li>
+              <CreditCardIcon className="icon" />
+              <span>Mã giảm giá</span>
+            </li>
+          </Link>
           
             
           <li>

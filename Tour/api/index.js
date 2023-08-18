@@ -8,6 +8,9 @@ import tourguideRoute from "./routes/tourguide.js";
 import tripsRoute from "./routes/trips.js";
 import adminRoute from "./routes/admin.js";
 import bookingRoute from "./routes/booking.js";
+import serviceRoute from "./routes/service.js";
+import discountRoute from "./routes/discount.js";
+import chatRoute from "./routes/chat.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 
@@ -39,6 +42,9 @@ app.use("/api/tourguide", tourguideRoute);
 app.use("/api/trips", tripsRoute);
 app.use("/api/admin", adminRoute);
 app.use("/api/booking", bookingRoute);
+app.use("/api/service", serviceRoute);
+app.use("/api/discount", discountRoute);
+app.use("/api/chat", chatRoute);
 
 app.use((err, req, res, next) => {
   const errorStatus = err.status || 500;
