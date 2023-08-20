@@ -65,7 +65,6 @@ export const tourColumns = [
     headerName: "Description",
     width: 230,
     valueGetter: (params) => {
-      console.log(params.row);
       return params.row?.desc || ""
     }
   },

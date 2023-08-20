@@ -26,6 +26,7 @@ router.get("/find/:id", getTour);
 //GET ALL
 
 router.get("/", getTours);
+router.get("/:id", getTour)
 router.get("/countByCity", countByCity);
 router.get("/countByType", countByType);
 router.get("/trip/:id", getTourTrips);

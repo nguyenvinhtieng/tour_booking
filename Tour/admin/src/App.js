@@ -15,6 +15,7 @@ import NewTrip from "./pages/newTrip/NewTrip";
 import axios from "axios";
 import NewService from "./pages/newService/NewService";
 import NewDiscount from "./pages/newDiscount/NewDiscount";
+import { discountInfo, serviceInfo, tourInfo, tripInfo, userInfo } from "./singlepage";
 function App() {
   const { darkMode } = useContext(DarkModeContext);
 
@@ -81,7 +82,7 @@ function App() {
                 element={
                   <ProtectedRoute>
                     <AdminRoute>
-                      <Single />
+                      <Single info={userInfo}/>
                     </AdminRoute>
                   </ProtectedRoute>
                 }
@@ -106,16 +107,14 @@ function App() {
                   </ProtectedRoute>
                 }
               />
-              {/* <Route
+              <Route
                 path=":userId"
                 element={
                   <ProtectedRoute>
-                    <AdminRoute>
-                      <Single />
-                    </AdminRoute>
+                    <Single info={serviceInfo}/>
                   </ProtectedRoute>
                 }
-              /> */}
+              />
               <Route
                 path="new"
                 element={
@@ -133,6 +132,14 @@ function App() {
                 element={
                   <ProtectedRoute>
                     <List columns={discountColumns} />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path=":userId"
+                element={
+                  <ProtectedRoute>
+                    <Single info={discountInfo}/>
                   </ProtectedRoute>
                 }
               />
@@ -160,9 +167,7 @@ function App() {
                 path=":productId"
                 element={
                   <ProtectedRoute>
-                    <AdminRoute>
-                      <Single />
-                    </AdminRoute>
+                    <Single info={tourInfo}/>
                   </ProtectedRoute>
                 }
               />
@@ -201,7 +206,7 @@ function App() {
                 element={
                   <ProtectedRoute>
                     <AdminRoute>
-                      <Single />
+                      <Single info={tripInfo}/>
                     </AdminRoute>
                   </ProtectedRoute>
                 }

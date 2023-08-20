@@ -8,6 +8,14 @@ export const getAllDiscount = async (req, res, next) => {
       next(err);
     }
 };
+export const getDiscount = async (req, res, next) => {
+  try {
+    const discount = await Discount.findById(req.params.id);
+    res.status(200).json(discount);
+  } catch (err) {
+    next(err);
+  }
+}
 
 // export const getDiscount = async (req, res, next) => {
 //   try {

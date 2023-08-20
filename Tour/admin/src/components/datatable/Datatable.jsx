@@ -178,14 +178,14 @@ const Datatable = ({columns}) => {
         }
         if(user.role == "staff") {
           return <div className="cellAction">
-            <Link to="/users/test" style={{ textDecoration: "none" }}>
+            <Link to={`./${params.row._id}`} style={{ textDecoration: "none" }}>
               <div className="viewButton">Xem</div>
             </Link>
           </div>
         }
         return (
           <div className="cellAction">
-            <Link to="/users/test" style={{ textDecoration: "none" }}>
+            <Link to={`./${params.row._id}`} style={{ textDecoration: "none" }}>
               <div className="viewButton">Xem</div>
             </Link>
             <div
