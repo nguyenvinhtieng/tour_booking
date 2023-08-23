@@ -9,7 +9,7 @@ const Navbar = () => {
   // const { user } = useContext(AuthContext);
   // console.log("user", user)
   const {data: user, loading, error } = useFetch("/users/get-user-info");
-  const { dispatch } = useContext(AuthContext);
+  const { user: userStore, dispatch } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const logout = async () => {
@@ -36,9 +36,10 @@ const Navbar = () => {
         <Link to="/" style={{ color: "inherit", textDecoration: "none" }}>
           <span className="logo">HomaTour -  51900335</span>
         </Link>
-        {(user && user.username) ? (
+
+        {((user && user.username) || (userStore && userStore.username)) ? (
           <div className="wrapper-header">
-            <div > {user.username} </div>
+            <div > {user.username || userStore.username} </div>
             <button className="navButton" onClick={logout}>Đăng xuất</button>
           </div>
         ) : (

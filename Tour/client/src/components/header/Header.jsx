@@ -7,6 +7,7 @@ import {
   faPlane,
   faTaxi,
   faUser,
+  faBellConcierge,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./header.css";
@@ -38,7 +39,8 @@ const Header = ({ type }) => {
 
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
-
+  // get current path ex: /wallet
+  const currentPath = window.location.pathname.split("/")[1];
 
   const handleOption = (name, operation) => {
     setOptions((prev) => {
@@ -64,10 +66,10 @@ const Header = ({ type }) => {
         }
       >
         <div className="headerList">
-          <div className="headerListItem active">
+          <Link to="/" className={`headerListItem ${currentPath === "" ? "active" : ""}`}>
             <FontAwesomeIcon icon={faRoute} />
             <span>Xem Tour</span>
-          </div>
+          </Link>
           <div className="headerListItem">
             <FontAwesomeIcon icon={faPlane} />
             <span>Chuyến bay</span>
@@ -80,12 +82,12 @@ const Header = ({ type }) => {
             <FontAwesomeIcon icon={faBed} />
             <span>Chỗ ở</span>
           </div>
-          <div className="headerListItem">
-            <FontAwesomeIcon icon={faTaxi} />
-            <span>Taxi sân bay</span>
-          </div>
+          <Link to="/services" className={`headerListItem ${currentPath === "services" ? "active" : ""}`}>
+          <FontAwesomeIcon icon={faBellConcierge} />
+            <span>Dịch vụ</span>
+          </Link>
           {user && (
-          <Link to='/wallet' className="headerListItem">
+          <Link to='/wallet' className={`headerListItem ${currentPath === "wallet" ? "active" : ""}`}>
             <FontAwesomeIcon icon={faUser} />
             <span>Ví của tôi</span>
           </Link>

@@ -118,38 +118,32 @@ const Wallet = () => {
         </div>
         <div className="wallet__container mt-30">
           <p className="center"><b>Lịch sử giao dịch</b></p>
-          <table className="table01 mt-10">
-            <thead>
-              <tr>
-                <th>No.</th>
-                <th>Ngày</th>
-                <th>Loại giao dịch</th>
-                <th>Số tiền</th>
-                <th>Trạng thái</th>
-                <th>Hành động</th>
-              </tr>
-            </thead>
-            <tbody>
-              {data && data.length > 0 && data.map((item, index) => {
+          <div class="table">
+            <div class="row header">
+              <div class="cell">No.</div>
+              <div class="cell">Ngày</div>
+              <div class="cell">Loại giao dịch</div>
+              <div class="cell">Số tiền</div>
+              <div class="cell">Trạng thái</div>
+              <div class="cell">Hành động</div>
+            </div>
+            {data && data.length > 0 && data.map((item, index) => {
                 return (
-                <tr key={item._id}>
-                  <td>{index + 1}</td>
-                  <td>{formatDate(item.createdAt)}</td>
-                  <td>{item.money ? "Nạp tiền" : "Đặt tour"}</td>
-                  <td>{item.money ? (<span className="green"> + {item.money } VNĐ</span>) :  (<span className="red"> - {item.price } VNĐ</span>)}</td>
-                  <td>{item.money ? "Thành công" :  (<span>{item.status}</span>)}</td>
-
-                  <td>
-                    {item.money && "" }
-                    {/* {!item.money && (<button className="c-btn-01 mr-5">Xem chi tiết</button>)} */}
-                    {!item.money && item.status === "confirming" && (<button className="c-btn-02" onClick={()=> handleShowCanelTour(item._id)}>Hủy tour</button>)}
-                  </td>
-                </tr>
+                  <div class="row" key={item._id}>
+                    <div class="cell" data-title="No.">{index + 1}</div>
+                    <div class="cell" data-title="Ngày">{formatDate(item.createdAt)}</div>
+                    <div class="cell" data-title="Loại giao dịch">{item.money ? "Nạp tiền" : "Đặt tour"}</div>
+                    <div class="cell" data-title="Số tiền">
+                      {item.money ? (<span className="green"> + {item.money } VNĐ</span>) :  (<span className="red"> - {item.price } VNĐ</span>)}
+                    </div>
+                    <div class="cell" data-title="Trạng thái">{item.money ? "Thành công" :  (<span>{item.status}</span>)}</div>
+                    <div class="cell" data-title="Hành động">
+                      {item.money && "" }
+                      {!item.money && item.status === "confirming" && (<button className="c-btn-02" onClick={()=> handleShowCanelTour(item._id)}>Hủy tour</button>)}</div>
+                  </div>
                 )
               })}
-              
-            </tbody>
-          </table>
+          </div>
         </div>
         <Modal title="Nạp tiền vào ví" isShow={show} handleClose={handleTriggerModal}>
           <input type="number" className="c-input" placeholder="Nhập số tiền muốn nạp" ref={inputRef} min="0"/>

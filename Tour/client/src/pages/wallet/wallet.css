@@ -183,3 +183,11 @@
   margin-left: auto;
   margin-right: auto;
 }
+
+.row .cell:nth-child(1) {
+  width: 90px !important;
+}
+
+.row .cell:nth-child(4) {
+  width: 160px;
+}

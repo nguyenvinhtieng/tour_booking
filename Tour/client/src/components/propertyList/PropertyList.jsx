@@ -2,7 +2,7 @@ import useFetch from "../../hooks/useFetch";
 import "./propertyList.css";
 
 const PropertyList = () => {
-  const { data, loading, error } = useFetch("/tours/countByType");
+  const { data, loading, error } = useFetch("/tours/countByType/count");
 
   const images = [
     "https://espc.com.vn/mediacenter/media/images/1595/news/ava/s1000_1000/mu-cang-chai-1512708804.png",

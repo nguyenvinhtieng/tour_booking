@@ -25,10 +25,11 @@ router.delete("/:id", verifyAdmin, deleteTour);
 router.get("/find/:id", getTour);
 //GET ALL
 
-router.get("/", getTours);
+router.get("/countByCity/count", countByCity);
+router.get("/countByType/count", countByType);
 router.get("/:id", getTour)
-router.get("/countByCity", countByCity);
-router.get("/countByType", countByType);
+router.get("/", getTours);
+
 router.get("/trip/:id", getTourTrips);
 
 export default router;

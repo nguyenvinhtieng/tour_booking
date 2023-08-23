@@ -135,10 +135,11 @@ export const bookingColumns = [
   { field: "services", headerName: "Service", width: 200,
     renderCell: (cellValue) => {
       const services = cellValue.row.services
+      if(!services) return (<TextField value="No service" multiline />)
       let txt = services.map((service) => `${service.title} - ${service.price} VND`).join("\n")
       return <TextField
         value={txt}
-        InputProps={{ disableUnderline: true }}
+        // InputProps={{ disableUnderline: true }}
         multiline
       />
     },

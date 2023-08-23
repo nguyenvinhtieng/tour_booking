@@ -9,6 +9,7 @@ import List from "./pages/list/List";
 import Login from "./pages/login/Login";
 import Wallet from "./pages/wallet/Wallet";
 import axios from "axios";
+import Services from "./pages/services/Services";
 function App() {
 
   axios.interceptors.request.use(
@@ -30,6 +31,7 @@ function App() {
         <Route path="/tours/:id" element={<Tour/>}/>
         <Route path="/login" element={<Login/>}/>
         <Route path="/wallet" element={<Wallet/>}/>
+        <Route path="/services" element={<Services/>}/>
       </Routes>
     </BrowserRouter>
   );
