@@ -43,7 +43,7 @@ export const getTours = async (req, res, next) => {
   try {
     const tours = await Tour.find({
       ...others,
-      cheapestPrice: { $gt: min || 0, $lt: max || 999999999999 },
+      cheapestPrice: { $gt: min || 0, $lt: max || Infinity },
     }).limit(req.query.limit);
     res.status(200).json(tours);
   } catch (err) {
