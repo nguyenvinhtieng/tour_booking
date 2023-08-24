@@ -16,6 +16,7 @@ export default function ChatBot() {
     const [isShowContent, setIsShowContent] = useState(false)
     const [isThinking, setIsThinking] = useState(false)
     const chatInputRef = useRef(null)
+    const chatMessageRef = useRef(null)
     const [chatContents, setChatContents] = useState([
         { id: 1, content: 'Hello, You can start a conversation now!', user: 'bot'}
     ])
@@ -35,28 +36,34 @@ export default function ChatBot() {
         }
 
         setChatContents([...chatContents, { id: chatContents.length + 1, content: chatTxt, user: 'me'}])
-        
-        try {
-            setIsThinking(true)
-            // await client.init();
-            // const chat = await client.sendMessage(
-            //     chatInputRef.current.value, 
-            //     'hutia ', 
-            //     (result) => {
-            //         console.log({result})}
-            //     );
-            // const res = await axios.post('/chat', { message: chatTxt })
-            // console.log(res.data)
-            // setTimeout(() => {
-            //     setIsThinking(false)
-            // }, 4000)
-        } catch (error) {
-            toast.error(error.message)
-        } finally {
+        let url = `http://localhost:5000?msg=${chatTxt}`
+        setIsThinking(true)
+        fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            setChatContents(prev => {
+                return [...prev, { id: prev.length + 1, content: data.answer, user: 'bot'}]
+            })
+            // scroll to bottom
+            chatMessageRef.current.scrollTop = chatMessageRef.current.scrollHeight
+        })
+        .catch(err => {
+            console.log({err});
+            // toast.error(error.message)
+        }).finally(() => {
             chatInputRef.current.value = ''
             chatInputRef.current.focus()
-           
-        }
+            setIsThinking(false)
+        })
+
+        // try {
+        //     setIsThinking(true)
+        // } catch (error) {
+        //     toast.error(error.message)
+        // } finally {
+        //     chatInputRef.current.value = ''
+        //     chatInputRef.current.focus()
+        // }
     }
 
   return <div className={`chatbot ${isShowContent && 'is-active'}`}>
@@ -80,7 +87,7 @@ export default function ChatBot() {
                 </div>
             </div>
             <div className="chatbot__content">
-                <div className="chatbot__message">
+                <div className="chatbot__message" ref={chatMessageRef}>
                     {chatContents.map((item, index) => {
                         return <div className={`chatbot__message--item ${item.user === 'bot' ? '' : 'me'}`} key={index}>{item.content}</div>
                     })}
