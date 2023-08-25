@@ -110,6 +110,7 @@ const NewTour = () => {
                   />
                 </div>
               ))}
+              
               <div className="formInput">
                 <label>Tour nổi bật?</label>
                 <select id="featured" onChange={handleChange}>
