@@ -31,10 +31,10 @@ const List = ({bookings}) => {
               <TableCell className="tableCell">
                 <div className="cellWrapper">
                   <img src={row?.tour_id?.photos[0] || "https://static.vinwonders.com/2022/06/quang-truong-2-4-nha-trang.jpg"} alt="" className="image" />
-                  {row?.tour_id.name}
+                  {row?.tour_id?.name}
                 </div>
               </TableCell>
-              <TableCell className="tableCell">{row?.user_id.username}</TableCell>
+              <TableCell className="tableCell">{row?.user_id?.username}</TableCell>
               <TableCell className="tableCell">{row?.createdAt}</TableCell>
               <TableCell className="tableCell">{row?.price}</TableCell>
               <TableCell className="tableCell">
