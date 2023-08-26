@@ -65,18 +65,18 @@ export const countByCity = async (req, res, next) => {
 };
 export const countByType = async (req, res, next) => {
   try {
-    const moutainCount = await Tour.countDocuments({ type: "Moutain" });
-    const beachCount = await Tour.countDocuments({ type: "Beach" });
-    const cultureCount = await Tour.countDocuments({ type: "Culture" });
-    const foodCount = await Tour.countDocuments({ type: "Food" });
-    const cityCount = await Tour.countDocuments({ type: "City" });
+    const naturalCount = await Tour.countDocuments({ type: "Thiên nhiên" });
+    const cityCount = await Tour.countDocuments({ type: "Thành phố" });
+    const cultureCount = await Tour.countDocuments({ type: "Văn hóa" });
+    const foodCount = await Tour.countDocuments({ type: "Ẩm thực" });
+    const expCount = await Tour.countDocuments({ type: "Trải nghiệm" });
 
     res.status(200).json([
-      { type: "Moutain", count: moutainCount },
-      { type: "Beach", count: beachCount },
-      { type: "Culture", count: cultureCount },
-      { type: "Food", count: foodCount },
-      { type: "City", count: cityCount },
+      { type: "Thiên nhiên", count: naturalCount },
+      { type: "Thành phố", count: cityCount },
+      { type: "Văn hóa", count: cultureCount },
+      { type: "Ẩm thực", count: foodCount },
+      { type: "Trải nghiệm", count: expCount },
     ]);
   } catch (err) {
     next(err);
