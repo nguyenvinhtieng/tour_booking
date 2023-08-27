@@ -5,7 +5,7 @@ import axios from "axios";
 
 const Featured = () => {
   const { data, loading, error } = useFetch(
-    "/tours/countByCity/count?cities=Sài Gòn,Đà Lạt,Vung Tau"
+    "/tours/countByCity/count?cities=Sài Gòn,Đà Lạt,Vũng Tàu"
   );
 
   return (

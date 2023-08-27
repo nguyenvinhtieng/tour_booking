@@ -24,7 +24,7 @@ const SearchItem = ({ item }) => {
           <button>{item.rating}</button>
         </div>}
         <div className="siDetailTexts">
-          <span className="siPrice">{item.cheapestPrice}.000 VNĐ</span>
+        <span className="siPrice">{item.cheapestPrice.toLocaleString('vi-VN')} VNĐ</span>
           <span className="siTaxOp">Đã bao gồm thuế và phí</span>
           <Link to={`/tours/${item._id}`}>
           <button className="siCheckButton">Xem chi tiết</button>

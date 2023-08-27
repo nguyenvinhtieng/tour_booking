@@ -37,9 +37,9 @@ const Navbar = () => {
           <span className="logo">HomaTour -  51900335</span>
         </Link>
 
-        {((user && user.username) || (userStore && userStore.username)) ? (
+        {((user && user.fullname) || (userStore && userStore.fullname)) ? (
           <div className="wrapper-header">
-            <div > {user.username || userStore.username} </div>
+            <div > Xin chào {user.fullname || userStore.fullname} </div>
             <button className="navButton" onClick={logout}>Đăng xuất</button>
           </div>
         ) : (
