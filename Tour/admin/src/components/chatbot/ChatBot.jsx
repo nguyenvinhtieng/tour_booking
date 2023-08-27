@@ -42,7 +42,9 @@ export default function ChatBot() {
         .then(response => response.json())
         .then(data => {
             setChatContents(prev => {
-                return [...prev, { id: prev.length + 1, content: data.answer, user: 'bot'}]
+                let ans = data.answer
+                ans = ans.replace(/_/g, ' ')
+                return [...prev, { id: prev.length + 1, content: ans, user: 'bot'}]
             })
             // scroll to bottom
             chatMessageRef.current.scrollTop = chatMessageRef.current.scrollHeight

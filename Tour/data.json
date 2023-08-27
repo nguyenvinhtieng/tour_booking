@@ -1,0 +1,20 @@
+[
+    {
+        "title": "Hạng VIP",
+        "price": 900,
+        "maxPeople": 5,
+        "desc": "Trải nghiệm hàng loạt dịch vụ VIP như: Xe limousine đưa đón trên toàn hành trình, khách sạn 5 sao, Hướng dẫn viên cá nhân, vé máy bay hạng thương gia,... rất nhiều tiện ích hạng nhất đang chờ đón quý khách",
+    },
+    {
+        "title": "Hạng tiêu chuẩn",
+        "price": 500,
+        "maxPeople": 10,
+        "desc": "Không cần trả thêm bất cứ khoản phí nào, thoải mái trải nghiệm, chất lượng đảm bảo",
+    },
+    {
+        "title": "Hạng phổ thông",
+        "price": 300,
+        "maxPeople": 55,
+        "desc": "Đảm bảo các tiện nghi cần thiết cùng mức giá không thể tuyệt hơn, phù hợp các đoàn khách mong muốn trải nghiệm vùng đất mới với chi phí phù hợp nhất!"
+    }
+]

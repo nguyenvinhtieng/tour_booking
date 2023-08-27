@@ -7,18 +7,6 @@ const Featured = () => {
   const { data, loading, error } = useFetch(
     "/tours/countByCity/count?cities=Sài Gòn,Đà Lạt,Vung Tau"
   );
-  // const fetchDataCount = async () => {
-  //   try {
-  //     const res = await axios.get("/tours/countByCity");
-  //     console.log(res.data);
-  //   } catch (err) {
-  //     console.log("Eror: ", err)
-  //   }
-    
-  // }
-  // useEffect(() => {
-  //   fetchDataCount()
-  // }, []);
 
   return (
     <div className="featured">

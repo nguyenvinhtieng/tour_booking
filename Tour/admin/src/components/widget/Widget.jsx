@@ -34,9 +34,9 @@ const Widget = ({ type, amount }) => {
     case "order":
       linkTo = "/tours";
       data = {
-        title: "Đơn đặt",
+        title: "Số tour",
         isMoney: false,
-        link: "Xem tất cả đơn đặt",
+        link: "Xem tất cả các tour",
         icon: (
           <ShoppingCartOutlinedIcon
             className="icon"

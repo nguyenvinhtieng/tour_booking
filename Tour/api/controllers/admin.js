@@ -11,7 +11,7 @@ export const getDataDashBoard = async (req, res, next) => {
     let numberOfUsers = await User.countDocuments();
     let trips = await Trip.find();
     let bookings = await Booking.find().sort({createdAt: -1}).populate("user_id").populate("tour_id").populate("trip_id");
-    const tours = await Tour.find({cheapestPrice: {$lt: 999 }});
+    const tours = await Tour.find({});
     return res.json({ numberOfUsers, trips, tours, bookings, user: me});
   } catch (err) {
     next(err);

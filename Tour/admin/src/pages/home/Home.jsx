@@ -14,6 +14,7 @@ const Home = () => {
   useEffect(() => {
     const getData = async () => {
       const res = await axios.get("/admin/data-dashboard");
+      console.log(res.data.trips)
       setData(res.data);
     };
     getData();
