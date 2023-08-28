@@ -1,5 +1,6 @@
 import re
 import numpy as np
+import pandas as pd
 import pickle
 import keras
 from underthesea import word_tokenize 
@@ -38,8 +39,22 @@ def str_to_tokens(sentence):
         return False
     return pad_sequences([tokens_list], maxlen=maxlen_questions,padding='post')
 
+df = pd.read_csv('./data.csv', usecols=[1,2])
+data_questions = df['user_a'].values
+data_answers = df['user_b'].values
+
+def checkQuestionHaveInDb(question):
+    for i in range(len(data_questions)):
+        if(data_questions[i] == question):
+            return data_answers[i]
+    return ""
+
 # hàm chatbot trả lời câu hỏi
 def chatbot(input):
+    dataQuestionDb = checkQuestionHaveInDb(input)
+    if(dataQuestionDb != ""):
+        return dataQuestionDb
+            
     input_question = input
 
     if input_question == '':
