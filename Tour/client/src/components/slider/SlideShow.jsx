@@ -23,22 +23,22 @@ export default class SlideShow extends Component {
         <div className='slide-container-custom'>
             <Slider {...settings}>
                 <div>
-                    <div className='slider-container-main'>
+                    <a href="/discount" className='slider-container-main'>
                         <h3 className='slider-text'>Hello</h3>
                         <img src="/images/slider-03.jpg" alt="" />
-                    </div>
+                    </a>
                 </div>
                 <div>
-                    <div className='slider-container-main'>
+                    <a href="/discount" className='slider-container-main'>
                         <h3 className='slider-text'>Hello</h3>
                         <img src="/images/slider-02.jpg" alt="" />
-                    </div>
+                    </a>
                 </div>
                 <div>
-                    <div className='slider-container-main'>
+                    <a href="/discount" className='slider-container-main'>
                         <h3 className='slider-text'>Hello</h3>
                         <img src="/images/slider-01.jpg" alt="" />
-                    </div>
+                    </a>
                 </div>
             </Slider>
         </div>

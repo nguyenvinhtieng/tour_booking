@@ -10,6 +10,7 @@ import Login from "./pages/login/Login";
 import Wallet from "./pages/wallet/Wallet";
 import axios from "axios";
 import Services from "./pages/services/Services";
+import Discount from "./pages/discount/Discount";
 function App() {
 
   axios.interceptors.request.use(
@@ -32,6 +33,7 @@ function App() {
         <Route path="/login" element={<Login/>}/>
         <Route path="/wallet" element={<Wallet/>}/>
         <Route path="/services" element={<Services/>}/>
+        <Route path="/discount" element={<Discount/>}/>
       </Routes>
     </BrowserRouter>
   );

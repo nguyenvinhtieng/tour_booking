@@ -86,6 +86,10 @@ const Header = ({ type }) => {
           <FontAwesomeIcon icon={faBellConcierge} />
             <span>Dịch vụ</span>
           </Link>
+          <Link to="/discount" className={`headerListItem ${currentPath === "discount" ? "active" : ""}`}>
+          <FontAwesomeIcon icon={faCalendarDays} />
+            <span>Khuyễn mãi</span>
+          </Link>
           {user && (
           <Link to='/wallet' className={`headerListItem ${currentPath === "wallet" ? "active" : ""}`}>
             <FontAwesomeIcon icon={faUser} />
