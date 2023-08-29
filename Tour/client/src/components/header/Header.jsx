@@ -70,25 +70,25 @@ const Header = ({ type }) => {
             <FontAwesomeIcon icon={faRoute} />
             <span>Xem Tour</span>
           </Link>
-          <div className="headerListItem">
+          {/* <div className="headerListItem">
             <FontAwesomeIcon icon={faPlane} />
             <span>Chuyến bay</span>
-          </div>
-          <div className="headerListItem">
+          </div> */}
+          {/* <div className="headerListItem">
             <FontAwesomeIcon icon={faCar} />
             <span>Thuê xe tự lái</span>
           </div>
           <div className="headerListItem">
             <FontAwesomeIcon icon={faBed} />
             <span>Chỗ ở</span>
-          </div>
+          </div> */}
           <Link to="/services" className={`headerListItem ${currentPath === "services" ? "active" : ""}`}>
           <FontAwesomeIcon icon={faBellConcierge} />
             <span>Dịch vụ</span>
           </Link>
           <Link to="/discount" className={`headerListItem ${currentPath === "discount" ? "active" : ""}`}>
           <FontAwesomeIcon icon={faCalendarDays} />
-            <span>Khuyễn mãi</span>
+            <span>Khuyến mãi</span>
           </Link>
           {user && (
           <Link to='/wallet' className={`headerListItem ${currentPath === "wallet" ? "active" : ""}`}>

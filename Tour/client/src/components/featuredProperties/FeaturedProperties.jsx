@@ -3,7 +3,8 @@ import useFetch from "../../hooks/useFetch";
 import "./featuredProperties.css";
 
 const FeaturedProperties = () => {
-  const { data, loading, error } = useFetch("/tours?featured=true&min=100");
+  let { data, loading, error } = useFetch("/tours?featured=true&min=100");
+  if(data.length > 4) data.splice(0, 4);
   return (
     <div className="fp">
       {loading ? (
