@@ -44,3 +44,7 @@
 .fpRating>span{
   font-size: 14px;
 }
+.fpItem {
+  color: inherit;
+  text-decoration: inherit;
+}

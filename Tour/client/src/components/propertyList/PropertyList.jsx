@@ -1,8 +1,29 @@
+import { useContext } from "react";
 import useFetch from "../../hooks/useFetch";
 import "./propertyList.css";
+import { SearchContext } from "../../context/SearchContext";
+import { useNavigate } from "react-router-dom";
 
 const PropertyList = () => {
   const { data, loading, error } = useFetch("/tours/countByType/count");
+  console.log(data);
+  const { dispatch } = useContext(SearchContext);
+  const navigate = useNavigate();
+  const defaultDates = [{
+    "startDate": new Date(),
+    "endDate": new Date(),
+    "key": "selection"
+  }]
+  const defaultOptions = {
+    "adult": 1,
+    "children": 0,
+    "trip": 1
+  }
+  const handleSearchType = (type) => {
+    dispatch({ type: "NEW_SEARCH", payload: { destination: "", dates: defaultDates, options: defaultOptions, type: type }});
+    navigate("/tours", { state: { destination: "", dates: defaultDates, options: defaultOptions, type: type } });
+  };
+
 
   const images = [
     "https://espc.com.vn/mediacenter/media/images/1595/news/ava/s1000_1000/mu-cang-chai-1512708804.png",
@@ -19,7 +40,7 @@ const PropertyList = () => {
         <>
           {data &&
             images.map((img,i) => (
-              <div className="pListItem" key={i}>
+              <div className="pListItem" key={i} onClick={()=>handleSearchType(data[i]?.type)}>
                 <img
                   src={img}
                   alt=""
