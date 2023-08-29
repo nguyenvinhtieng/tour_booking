@@ -39,10 +39,13 @@ export const getTour = async (req, res, next) => {
   }
 };
 export const getTours = async (req, res, next) => {
-  const { min, max, ...others } = req.query;
+  const { min, max, city, type, ...others } = req.query;
   try {
+    const objSearch = {};
+    if(city) objSearch.city = city;
+    if(type) objSearch.type = type;
     const tours = await Tour.find({
-      ...others,
+      ...objSearch,
       cheapestPrice: { $gt: min || 0, $lt: max || Infinity },
     }).limit(req.query.limit);
     res.status(200).json(tours);
