@@ -41,9 +41,11 @@ export const getTour = async (req, res, next) => {
 export const getTours = async (req, res, next) => {
   const { min, max, city, type, ...others } = req.query;
   try {
-    const objSearch = {};
+    let objSearch = {};
     if(city) objSearch.city = city;
     if(type) objSearch.type = type;
+    objSearch = Object.assign(objSearch, others);
+    console.log(objSearch);
     const tours = await Tour.find({
       ...objSearch,
       cheapestPrice: { $gt: min || 0, $lt: max || Infinity },
