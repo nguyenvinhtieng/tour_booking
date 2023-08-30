@@ -147,16 +147,16 @@
   margin-top: 5px;
   margin-bottom: 0;
 }
-.reserve-main .rSelectTrips .trip label {
+/* .reserve-main .rSelectTrips .trip label {
   /* margin-right: 5px; */
-}
+ */
 .reserve-main .rSelectTrips .trip input {
   margin-right: 5px;
   width: 20px;
   height: 20px;
 }
-.reserve-main .rTitle {
-}
+/* .reserve-main .rTitle {
+} */
 .reserve-main .rDesc {
   font-size: 13px;
 }
