@@ -129,7 +129,7 @@ const Register = () => {
               <button type="submit" disabled={loading} className="rButton">
                 Đăng ký
               </button>
-              <Link to="/login" className="tForget">
+              <Link to="/login" className="tReturnLogin">
                 Đã có tài khoản? Đăng nhập ngay
               </Link>
               {error && <span>{error}</span>}
