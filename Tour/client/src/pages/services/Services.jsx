@@ -75,26 +75,26 @@ const Services = () => {
       <div className="tourContainer">
         <div className="wallet__container mt-30">
           <h1 className="center"><b>Các dịch vụ đang được ưu đãi</b></h1>
-          <div class="table">
-            <div class="row header">
-              <div class="cell">No.</div>
-              <div class="cell">Tên</div>
-              <div class="cell">Chi tiết</div>
-              <div class="cell">Giá tiền</div>
+          <div className="table">
+            <div className="row header">
+              <div className="cell">No.</div>
+              <div className="cell">Tên</div>
+              <div className="cell">Chi tiết</div>
+              <div className="cell">Giá tiền</div>
             </div>
             {data && data.length > 0 && data.map((item, index) => {
                 return (
-                  <div class="row" key={item._id}>
-                    <div class="cell" data-title="No.">
+                  <div className="row" key={item._id}>
+                    <div className="cell" data-title="No.">
                     {index + 1}
                     </div>
-                    <div class="cell" data-title="Tên">
+                    <div className="cell" data-title="Tên">
                     {item.title}
                     </div>
-                    <div class="cell" data-title="Chi tiết">
+                    <div className="cell" data-title="Chi tiết">
                     {item.description}
                     </div>
-                    <div class="cell" data-title="Giá tiền">
+                    <div className="cell" data-title="Giá tiền">
                     {item.price.toLocaleString('vi-VN')} VNĐ
                     </div>
                   </div>

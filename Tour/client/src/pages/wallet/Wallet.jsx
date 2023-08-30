@@ -28,6 +28,9 @@ const Wallet = () => {
   const inputRef = useRef(null);
   const [data, setData] = useState([]);
   const [tourSelected, setTourSelected] = useState(null);
+
+  const navigate = useNavigate()
+
   const fetchDataWalletPage = async () => {
     try {
       const res = await axios.get("/users/get-data-wallet");
@@ -40,6 +43,7 @@ const Wallet = () => {
 
     } catch (error) {
       console.log(error);
+      navigate("/login")
     }
   }
   useEffect(() => {
@@ -118,26 +122,26 @@ const Wallet = () => {
         </div>
         <div className="wallet__container mt-30">
           <p className="center"><b>Lịch sử giao dịch</b></p>
-          <div class="table">
-            <div class="row header">
-              <div class="cell">No.</div>
-              <div class="cell">Ngày</div>
-              <div class="cell">Loại giao dịch</div>
-              <div class="cell">Số tiền</div>
-              <div class="cell">Trạng thái</div>
-              <div class="cell">Hành động</div>
+          <div className="table">
+            <div className="row header">
+              <div className="cell">No.</div>
+              <div className="cell">Ngày</div>
+              <div className="cell">Loại giao dịch</div>
+              <div className="cell">Số tiền</div>
+              <div className="cell">Trạng thái</div>
+              <div className="cell">Hành động</div>
             </div>
             {data && data.length > 0 && data.map((item, index) => {
                 return (
-                  <div class="row" key={item._id}>
-                    <div class="cell" data-title="No.">{index + 1}</div>
-                    <div class="cell" data-title="Ngày">{formatDate(item.createdAt)}</div>
-                    <div class="cell" data-title="Loại giao dịch">{item.money ? "Nạp tiền" : "Đặt tour"}</div>
-                    <div class="cell" data-title="Số tiền">
+                  <div className="row" key={item._id}>
+                    <div className="cell" data-title="No.">{index + 1}</div>
+                    <div className="cell" data-title="Ngày">{formatDate(item.createdAt)}</div>
+                    <div className="cell" data-title="Loại giao dịch">{item.money ? "Nạp tiền" : "Đặt tour"}</div>
+                    <div className="cell" data-title="Số tiền">
                       {item.money ? (<span className="green"> + {item.money } VNĐ</span>) :  (<span className="red"> - {item.price } VNĐ</span>)}
                     </div>
-                    <div class="cell" data-title="Trạng thái">{item.money ? "Thành công" :  (<span>{item.status}</span>)}</div>
-                    <div class="cell" data-title="Hành động">
+                    <div className="cell" data-title="Trạng thái">{item.money ? "Thành công" :  (<span>{item.status}</span>)}</div>
+                    <div className="cell" data-title="Hành động">
                       {item.money && "" }
                       {!item.money && item.status === "confirming" && (<button className="c-btn-02" onClick={()=> handleShowCanelTour(item._id)}>Hủy tour</button>)}</div>
                   </div>

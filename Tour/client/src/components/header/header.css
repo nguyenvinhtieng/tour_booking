@@ -35,7 +35,7 @@
 
 .headerList {
   display: flex;
-  gap: 40px;
+  gap: 20px;
   margin-bottom: 50px;
 }
 
@@ -48,14 +48,14 @@
   color: inherit;
   text-decoration: none;
   border-radius: 20px;
+  padding: 10px;
   transition: background-color 0.7s ease, border-width 0.7s ease;
 }
 .headerListItem:hover {
   background-color: #bce32e; /* Màu nền khi hover */
   border-width: 2px; /* Biên độ khi hover */
   border-color: #ff4040; /* Màu biên độ khi hover */
-  border-radius: 20px;
-  padding: 10px;
+  
   transform: scale(1.01); /* Hiệu ứng scale lớn hơn khi hover */
 }
 
@@ -157,4 +157,7 @@
 
 .optionCounterButton:disabled {
   cursor: not-allowed;
+}
+.headerTitle {
+  margin-bottom: 12px;
 }

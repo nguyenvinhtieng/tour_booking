@@ -54,34 +54,34 @@ function formatDate(dateString) {
       <div className="tourContainer">
         <div className="wallet__container mt-30">
           <h1 className="center"><b>Các mã khuyến mãi đang có hiệu lực</b></h1>
-          <div class="table">
-            <div class="row header">
-              <div class="cell">No.</div>
-              <div class="cell">CODE</div>
-              <div class="cell w-145">Chi tiết</div>
-              <div class="cell">Ngày bắt đầu</div>
-              <div class="cell">Ngày hết hạn</div>
-              <div class="cell">Số lượng còn lại</div>
+          <div className="table">
+            <div className="row header">
+              <div className="cell">No.</div>
+              <div className="cell">CODE</div>
+              <div className="cell w-145">Chi tiết</div>
+              <div className="cell">Ngày bắt đầu</div>
+              <div className="cell">Ngày hết hạn</div>
+              <div className="cell">Số lượng còn lại</div>
             </div>
             {data && data.length > 0 && data.map((item, index) => {
                 return (
-                  <div class="row" key={item._id}>
-                    <div class="cell" data-title="No.">
+                  <div className="row" key={item._id}>
+                    <div className="cell" data-title="No.">
                     {index + 1}
                     </div>
-                    <div class="cell" data-title="CODE">
+                    <div className="cell" data-title="CODE">
                     {item.code}
                     </div>
-                    <div class="cell w-145" data-title="Chi tiết">
+                    <div className="cell w-145" data-title="Chi tiết">
                     {item.description}
                     </div>
-                    <div class="cell" data-title="Ngày bắt đầu">
+                    <div className="cell" data-title="Ngày bắt đầu">
                     {formatDate(item.startDate)}
                     </div>
-                    <div class="cell" data-title="Ngày hết hạn">
+                    <div className="cell" data-title="Ngày hết hạn">
                     {formatDate(item.endDate)}
                   </div>
-                    <div class="cell" data-title="Số lượng còn lại">
+                    <div className="cell" data-title="Số lượng còn lại">
                     {item.total - item.used}
                     </div>
                   </div>
