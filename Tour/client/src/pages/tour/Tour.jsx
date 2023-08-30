@@ -107,11 +107,11 @@ const Tour = () => {
               Hành trình tuyệt vời – {data.distance}km từ vị trí hiện tại
             </span>
             <span className="tourPriceHighlight">
-              Đặt với giá chỉ từ {data.cheapestPrice}K VNĐ ngay thời điểm này để được miễn phí trung chuyển!
+              Đặt với giá chỉ từ {data.cheapestPrice} VNĐ ngay thời điểm này để được miễn phí trung chuyển!
             </span>
             <div className="tourImages">
               {data.photos?.map((photo, i) => (
-                <div className="tourImgWrapper" key={i}>
+                <div className="" key={i}>
                   <img
                     onClick={() => handleOpen(i)}
                     src={photo}
@@ -132,7 +132,7 @@ const Tour = () => {
                   Địa điểm này nằm trong danh sách những Tour đáng trải nghiệm nhất mùa hè năm 2023!
                 </span>
                 <h2>
-                  <b>{data.cheapestPrice}K VNĐ</b> ({days}N{days-1}Đ)
+                  <b>{data.cheapestPrice} VNĐ</b> ({days}N{days-1}Đ)
                 </h2>
                 <button onClick={handleClick}>Giữ chỗ và Đặt ngay!</button>
               </div>

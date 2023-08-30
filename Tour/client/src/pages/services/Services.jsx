@@ -1,4 +1,4 @@
-import "./wallet.css";
+import "./services.css";
 import Navbar from "../../components/navbar/Navbar";
 import Header from "../../components/header/Header";
 import MailList from "../../components/mailList/MailList";
@@ -95,7 +95,7 @@ const Services = () => {
                     {item.description}
                     </div>
                     <div class="cell" data-title="Giá tiền">
-                    {item.price} NVĐ
+                    {item.price.toLocaleString('vi-VN')} VNĐ
                     </div>
                   </div>
                 )

@@ -8,6 +8,14 @@ import {
   faTaxi,
   faUser,
   faBellConcierge,
+  faBuilding,
+  faCreditCard,
+  faGifts,
+  faDiamond,
+  faBinoculars,
+  faLifeRing,
+  faMailBulk,
+  faEnvelope,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./header.css";
@@ -70,32 +78,32 @@ const Header = ({ type }) => {
             <FontAwesomeIcon icon={faRoute} />
             <span>Xem Tour</span>
           </Link>
-          {/* <div className="headerListItem">
-            <FontAwesomeIcon icon={faPlane} />
-            <span>Chuyến bay</span>
-          </div> */}
-          {/* <div className="headerListItem">
-            <FontAwesomeIcon icon={faCar} />
-            <span>Thuê xe tự lái</span>
-          </div>
-          <div className="headerListItem">
-            <FontAwesomeIcon icon={faBed} />
-            <span>Chỗ ở</span>
-          </div> */}
           <Link to="/services" className={`headerListItem ${currentPath === "services" ? "active" : ""}`}>
-          <FontAwesomeIcon icon={faBellConcierge} />
+          <FontAwesomeIcon icon={faBinoculars} />
             <span>Dịch vụ</span>
           </Link>
           <Link to="/discount" className={`headerListItem ${currentPath === "discount" ? "active" : ""}`}>
-          <FontAwesomeIcon icon={faCalendarDays} />
+          <FontAwesomeIcon icon={faGifts} />
             <span>Khuyến mãi</span>
           </Link>
           {user && (
           <Link to='/wallet' className={`headerListItem ${currentPath === "wallet" ? "active" : ""}`}>
-            <FontAwesomeIcon icon={faUser} />
+            <FontAwesomeIcon icon={faCreditCard} />
             <span>Ví của tôi</span>
           </Link>
           )}
+          <Link to='/' className="headerListItem">
+            <FontAwesomeIcon icon={faBuilding} />
+            <span>Về chúng tôi</span>
+          </Link>
+          <Link to='/' className="headerListItem">
+            <FontAwesomeIcon icon={faLifeRing} />
+            <span>Hỗ trợ</span>
+          </Link>
+          <Link to='/' className="headerListItem">
+            <FontAwesomeIcon icon={faEnvelope} />
+            <span>Liên hệ</span>
+          </Link>
         </div>
         
         {type !== "list" && (

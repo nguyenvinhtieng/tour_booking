@@ -5,6 +5,23 @@
   justify-content: center;
   position: relative;
 }
+/* Thêm hiệu ứng hover vào các button */
+.headerBtn,
+.optionCounterButton {
+  background-color: #bcde42; /* Màu nền ban đầu */
+  color: white; /* Màu chữ ban đầu */
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease; /* Thời gian chuyển đổi và hàm chuyển đổi */
+}
+
+.headerBtn:hover,
+.optionCounterButton:hover {
+  background-color: #0a203f; /* Màu nền khi hover */
+  color: #fff; /* Màu chữ khi hover */
+}
 
 .headerContainer {
   width: 100%;
@@ -26,8 +43,20 @@
   display: flex;
   align-items: center;
   gap: 10px;
+  padding-left: 7px;
+  padding-right: 7px;
   color: inherit;
   text-decoration: none;
+  border-radius: 20px;
+  transition: background-color 0.7s ease, border-width 0.7s ease;
+}
+.headerListItem:hover {
+  background-color: #bce32e; /* Màu nền khi hover */
+  border-width: 2px; /* Biên độ khi hover */
+  border-color: #ff4040; /* Màu biên độ khi hover */
+  border-radius: 20px;
+  padding: 10px;
+  transform: scale(1.01); /* Hiệu ứng scale lớn hơn khi hover */
 }
 
 .headerListItem.active {

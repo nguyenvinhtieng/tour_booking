@@ -1,0 +1,132 @@
+/* .register {
+    background-image: url('https://img6.thuthuatphanmem.vn/uploads/2022/07/19/hinh-nen-ruong-bac-thang-4k-cho-may-tinh_025251384.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+  
+    form {
+      background-color: rgba(255, 255, 255, 0.8);
+      border-radius: 10px;
+      padding: 20px;
+      width: 400px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+  
+      label {
+        font-weight: bold;
+        font-size: 14px;
+      }
+  
+      input[type="text"],
+      input[type="password"],
+      input[type="email"],
+      input[type="number"],
+      select {
+        height: 40px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 14px;
+      }
+  
+      select {
+        width: 100%;
+      }
+  
+      button {
+        border: none;
+        padding: 10px 20px;
+        background-color: #0071c2;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+        border-radius: 5px;
+        align-self: flex-end;
+  
+        &:disabled {
+          background-color: #0071c28c;
+          cursor: not-allowed;
+        }
+      }
+    }
+  
+    .formInput {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+  
+    .icon {
+      vertical-align: middle;
+      margin-left: 5px;
+    }
+  }
+   */
+   .register {
+    background-image: url('https://img6.thuthuatphanmem.vn/uploads/2022/07/19/hinh-nen-ruong-bac-thang-4k-cho-may-tinh_025251384.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+  }
+  
+  .tForget {
+    color: #0071c2;
+    text-align: center;
+    font-size: 14px;
+    margin-top: 10px;
+  }
+  
+  .tRegister {
+    color: #0071c2;
+    text-align: center;
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .rContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .rInput {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .rButton {
+    width: 100%;
+    background-color: #0071c2;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+  .rButton:disabled {
+    background-color: #0071c28c;
+    cursor: not-allowed;
+  }
+  
+  /* Add more styles for other elements if needed */
+  

@@ -14,8 +14,9 @@ const Home = () => {
       <Navbar />
       <Header/>
       <div className="homeContainer">
+        <h1 className="homeTitle">Các thành phố được yêu thích</h1>
         <Featured/>
-        <SlideShow />
+        <SlideShow/>
         <h1 className="homeTitle">Tìm kiểu hành trình phù hợp với bạn</h1>
         <PropertyList/>
         <h1 className="homeTitle">Top những Tour được yêu thích nhất</h1>

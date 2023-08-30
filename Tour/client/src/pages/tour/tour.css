@@ -30,6 +30,22 @@
   text-align: center;
   justify-content: center;
 }
+.bookNow,
+.tourDetailsPrice button {
+  background-color: #f6b745; /* Màu nền mặc định */
+  color: #fff; /* Màu chữ mặc định */
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.5s, color 0.5s; /* Hiệu ứng màu nền và màu chữ */
+}
+
+.bookNow:hover,
+.tourDetailsPrice button:hover {
+  background-color: #ffc107; /* Màu nền khi hover */
+  color: #fff; /* Màu chữ khi hover */
+}
 
 .tourTitle {
   font-size: 24px;
@@ -59,15 +75,23 @@
   width: 100%;
   height: auto;
 }
-
+.tourImg:hover {
+  transform: scale(1.01); /* Hiển thị ảnh lớn hơn khi hover */
+}
 .tourImgWrapper {
   width: 100%;
+  height: auto;
 }
 
 .tourImg {
-  width: 100%;
-  object-fit: cover;
+  width: 300%;
+  height: auto;
+  /* object-fit: cover; */
   cursor: pointer;
+  border-radius: 1%; /* Sử dụng giá trị 50% để bo tròn thành hình tròn */
+  border: 2px solid #fff; /* Thêm đường viền trắng bo tròn */
+  cursor: pointer; /* Thêm con trỏ chuột khi hover vào ảnh */
+  transition: transform 0.3s ease-in-out;
 }
 
 .tourDetails {

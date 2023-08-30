@@ -34,7 +34,15 @@ const Discount = () => {
       console.log(error);
     }
   }
-
+function formatDate(dateString) {
+  const date = new Date(dateString);
+  const day = date.getDate();
+  const month = date.getMonth() + 1;
+  const year = date.getFullYear();
+  const formattedDay = day < 10 ? `0${day}` : day;
+  const formattedMonth = month < 10 ? `0${month}` : month;
+  return `${formattedDay}/${formattedMonth}/${year}`;
+}
   useEffect(() => {
     fetchDataWalletPage();
   }, []);
@@ -68,11 +76,11 @@ const Discount = () => {
                     {item.description}
                     </div>
                     <div class="cell" data-title="Ngày bắt đầu">
-                    {item.startDate}
+                    {formatDate(item.startDate)}
                     </div>
                     <div class="cell" data-title="Ngày hết hạn">
-                    {item.endDate}
-                    </div>
+                    {formatDate(item.endDate)}
+                  </div>
                     <div class="cell" data-title="Số lượng còn lại">
                     {item.total - item.used}
                     </div>

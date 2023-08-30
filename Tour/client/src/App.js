@@ -8,6 +8,7 @@ import Tour from "./pages/tour/Tour";
 import List from "./pages/list/List";
 import Login from "./pages/login/Login";
 import Wallet from "./pages/wallet/Wallet";
+import Register from "./pages/register/register";
 import axios from "axios";
 import Services from "./pages/services/Services";
 import Discount from "./pages/discount/Discount";
@@ -31,6 +32,7 @@ function App() {
         <Route path="/tours" element={<List/>}/>
         <Route path="/tours/:id" element={<Tour/>}/>
         <Route path="/login" element={<Login/>}/>
+        <Route path="/register" element={<Register/>}/>
         <Route path="/wallet" element={<Wallet/>}/>
         <Route path="/services" element={<Services/>}/>
         <Route path="/discount" element={<Discount/>}/>

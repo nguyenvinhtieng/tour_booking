@@ -41,7 +41,9 @@
   align-items: center;
   gap: 10px;
 }
-
+.table .row .cell {
+  text-align: center;
+}
 .tourDistance {
   color: #0071c2;
   font-weight: 500;

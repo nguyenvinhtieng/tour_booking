@@ -1,6 +1,6 @@
-.slider-image-container {
+/* .slider-image-container {
 
-}
+} */
 .slider-container-main {
     width: 100%;
 }
@@ -9,3 +9,43 @@
     max-width: 100%;
     object-fit: cover;
 } */
+/* Thêm hiệu ứng hover và con trỏ chuột */
+.slide-container-custom .slick-slide {
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .slide-container-custom .slick-slide:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  }
+  
+  .slide-container-custom .slick-slide:hover a {
+    filter: brightness(70%);
+    cursor: pointer;
+  }
+  
+  .slide-container-custom .slick-slide a {
+    display: block;
+    text-decoration: none;
+  }
+  
+  /* Hiệu ứng tối đi */
+  .slide-container-custom .slick-slide img {
+    width: 100%;
+    height: auto;
+    transition: filter 0.3s ease;
+  }
+  
+  /* Hiệu ứng text */
+  .slide-container-custom .slider-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 24px;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+  

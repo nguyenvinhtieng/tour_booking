@@ -90,6 +90,11 @@
     border-radius: 5px;
     width: 100%;
     margin-top: 20px;
+    transition: background-color 0.5s ease, color 0.5s ease; /* Hiệu ứng màu nền và màu chữ, thời gian chuyển đổi chậm hơn */
+  }
+  .rButton:hover {
+    background-color: #ffc107; /* Màu nền khi hover */
+    color: #fff; /* Màu chữ khi hover */
   }
   .rSelectTrips {
     margin-top: 10px;
