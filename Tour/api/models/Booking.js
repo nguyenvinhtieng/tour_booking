@@ -8,7 +8,8 @@ const BookingSchema = new mongoose.Schema({
     tour_guide: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
     services: { type : Array , "default" : [] },
     discount: { type: Object },
-
+    start_date: { type: Date, default: Date.now },
+    end_date: { type: Date, default: Date.now },
 },
 {
     timestamps: true,

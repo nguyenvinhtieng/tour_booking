@@ -3,14 +3,14 @@ import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 
 import "./reserve.css";
 import useFetch from "../../hooks/useFetch";
-import { useContext, useId, useRef, useState } from "react";
+import { useContext, useEffect, useId, useRef, useState } from "react";
 import { SearchContext } from "../../context/SearchContext";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import { toast } from "react-toastify";
 
-const Reserve = ({ setOpen, tourId, tour }) => {
+const Reserve = ({ setOpen, tourId, tour, startDate, endDate }) => {
   const [selectedTrips, setSelectedTrips] = useState([]);
   const { data, loading, error } = useFetch(`/trips/`);
   const {data: user} = useFetch("/users/get-user-info");
@@ -20,8 +20,22 @@ const Reserve = ({ setOpen, tourId, tour }) => {
   // console.log("user", user)
   const [selectedTrip, setSelectedTrip] = useState(null);
   const [selectedServices, setSelectedServices] = useState([]);
+  const [discountList, setDiscountList] = useState([]);
   // const [services, setServices] = useState([]);
+  const [discountSelected, setDiscountSelected] = useState(null);
 
+
+  const fetchDiscountList = async () => {
+    try {
+      const res = await axios.get("/discount");
+      setDiscountList(res.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  useEffect(() => {
+    fetchDiscountList();
+  }, [discountList]);
 
   const getDatesInRange = (startDate, endDate) => {
     const start = new Date(startDate);
@@ -86,7 +100,6 @@ const Reserve = ({ setOpen, tourId, tour }) => {
       toast.error("Số dư không đủ để đặt tour này");
       return;
     }
-    
 
     try {
       const res = await axios.post("/booking/", {
@@ -94,6 +107,8 @@ const Reserve = ({ setOpen, tourId, tour }) => {
         trip_id: selectedTrip,
         services: selectedServices,
         discount: discountRef.current.value,
+        start_date: startDate, 
+        end_date: endDate,
       });
     } catch (err) {
       console.log(err);
@@ -131,19 +146,48 @@ const Reserve = ({ setOpen, tourId, tour }) => {
     let price = trip.price;
     let total = tour.cheapestPrice + tour.cheapestPrice * price / 100;
 
+
+    if(startDate && endDate) {
+      let diff_date = 1;
+      if(new Date(startDate).getDate() === new Date(endDate).getDate() && new Date(startDate).getMonth() === new Date(endDate).getMonth() && new Date(startDate).getFullYear() === new Date(endDate).getFullYear()) {
+        diff_date = 1;
+      } else {
+        diff_date = Math.ceil(Math.abs(new Date(startDate) - new Date(endDate)) / (1000 * 60 * 60 * 24));
+      }
+      total = total * diff_date;
+    }
+    
+    if(discountSelected) {
+      total -= total * discountSelected.value / 100;
+    }
+
+
     selectedServices.forEach(item => {
       const service = services.find(service => service._id === item);
       total += Number(service.price);
     })
 
-    let discount = 0;
-    if(discountRef.current.value) {
-      discount = Number(discountRef.current.value);
-      total -= total * discount / 100;
-    }
-
+    
     return total;
   }
+
+  const onChangeDiscount = (e) => {
+    let val = e.target.value;
+    if(val) {
+      let discountValid = null
+      discountList.forEach(item => {
+        if(item.code === val && item.total > item.used) {
+          discountValid = item;
+        }
+      })
+      if(discountValid) {
+        setDiscountSelected(discountValid);
+      } else if(discountSelected) {
+        setDiscountSelected(null);
+      }
+    }
+  }
+
   const handleChangeChecked = (e) => {
     const value = e.target.value;
     setSelectedTrip(value);
@@ -207,9 +251,10 @@ const Reserve = ({ setOpen, tourId, tour }) => {
           </div>
         </div>
         <span className="title">Mã giảm giá</span>
-        <input ref={discountRef} type="text" className="input-01" placeholder="Nhập mã giảm giá nếu có"/>
+        <input ref={discountRef} onChange={onChangeDiscount} type="text" className="input-01" placeholder="Nhập mã giảm giá nếu có"/>
         <button onClick={handleClick} className="rButton">
-          Đặt ngay! 
+          {!discountSelected && <span>Đặt ngay với giá {caculatePrice()} VNĐ </span>}
+          {discountSelected && <span>Đặt ngay với giá {caculatePrice()} VNĐ (đã giảm {discountSelected.value}%)</span>}
         </button>
       </div>
     </div>

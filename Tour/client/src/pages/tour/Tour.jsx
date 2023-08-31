@@ -142,7 +142,7 @@ const Tour = () => {
           <Footer />
         </div>
       )}
-      {openModal && data && <Reserve setOpen={setOpenModal} tourId={id} tour={data}/>}
+      {openModal && data && <Reserve setOpen={setOpenModal} tourId={id} tour={data} startDate={dates[0]?.startDate} endDate={dates[0]?.endDate}/>}
     </div>
   );
 };

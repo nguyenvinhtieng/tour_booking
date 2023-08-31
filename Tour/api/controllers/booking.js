@@ -11,12 +11,22 @@ import Discount from "../models/Discount.js";
 export const addBooking = async (req, res, next) => {
   try {
     const userId = req.user.id;
-    const { tour_id, trip_id, services, discount: d } = req.body;
+    const { tour_id, trip_id, services, discount: d, start_date, end_date } = req.body;
     const user = await User.findById(userId);
     const tour = await Tour.findById(tour_id);
     const trip = await Trip.findById(trip_id);
     let totalPrice = tour.cheapestPrice + tour.cheapestPrice * trip.price / 100;
     let discountObj = null;
+    
+    if(start_date && end_date) {
+      let diff_date = 1;
+      if(new Date(start_date).getDate() == new Date(end_date).getDate() && new Date(start_date).getMonth() == new Date(end_date).getMonth() && new Date(start_date).getFullYear() == new Date(end_date).getFullYear()) {
+        diff_date = 1;
+      } else {
+        diff_date = Math.ceil(Math.abs(new Date(start_date) - new Date(end_date)) / (1000 * 60 * 60 * 24));
+      }
+      totalPrice = totalPrice * diff_date;
+    }
     if(d) {
       let discount = await Discount.findOne({ code: d });
       let reduce = discount.value;
