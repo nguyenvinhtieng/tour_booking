@@ -5,7 +5,6 @@ import {
     acceptTour,
     cancelTour
 } from "../controllers/booking.js";
-import Hotel from "../models/Hotel.js";
 import {verifyAdmin, verifyUser} from "../utils/verifyToken.js"
 const router = express.Router();
 

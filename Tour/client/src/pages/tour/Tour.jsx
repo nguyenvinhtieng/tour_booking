@@ -127,12 +127,12 @@ const Tour = () => {
                 <p className="tourDesc">{data.desc}</p>
               </div>
               <div className="tourDetailsPrice">
-                <h1>Lựa chọn tuyệt vời cho hành trình {days} ngày {days-1} đêm</h1>
+                <h1>Lựa chọn tuyệt vời cho hành trình {days+1} ngày {days} đêm</h1>
                 <span>
                   Địa điểm này nằm trong danh sách những Tour đáng trải nghiệm nhất mùa hè năm 2023!
                 </span>
                 <h2>
-                  <b>{data.cheapestPrice} VNĐ</b> ({days}N{days-1}Đ)
+                  <b>{data.cheapestPrice} VNĐ</b> ({days+1}N{days}Đ)
                 </h2>
                 <button onClick={handleClick}>Giữ chỗ và Đặt ngay!</button>
               </div>

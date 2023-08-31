@@ -123,6 +123,7 @@
   margin-bottom: 10px;
   border-bottom: 5px solid #0071c2;
   display: inline-block;
+  text-align: left;
 }
 .reserve-main .rItem:first-child {
   padding-top: 0;
