@@ -216,7 +216,7 @@ const Reserve = ({ setOpen, tourId, tour, startDate, endDate }) => {
                     Số khách tối đa: <b>{item?.maxPeople}</b>  
                     {/* / <b>{item?.tripNumbers.length}</b> options */}
                   </div>
-                  <div className="rPrice">Giá: {item?.price} %</div>
+                  <div className="rPrice">Giá: + {item?.price-100} %</div>
                 </div>
                 {/* <div className="rSelectTrips">
                   {item.tripNumbers && item.tripNumbers.map((tripNumber) => (
