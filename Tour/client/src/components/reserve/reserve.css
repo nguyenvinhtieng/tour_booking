@@ -125,6 +125,15 @@
   display: inline-block;
   text-align: left;
 }
+.title1{
+  font-size: 18px;
+  font-weight: bold;
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+  border-bottom: 5px solid #0071c2;
+  display: inline-block;
+  text-align: left;
+}
 .reserve-main .rItem:first-child {
   padding-top: 0;
 }
@@ -160,6 +169,7 @@
 } */
 .reserve-main .rDesc {
   font-size: 13px;
+  text-align: justify;
 }
 .reserve-main .rMax {
   font-size: 11px;
@@ -173,7 +183,7 @@
   font-weight: bold;
   color: #0071c2;
   text-align: right;
-  margin-top: -14px;
+  margin-top: 10px;
 }
 
 

@@ -86,7 +86,7 @@ const Widget = ({ type, amount }) => {
       <div className="left">
         <span className="title">{data.title}</span>
         <span className="counter">
-          {data.isMoney && "VNĐ"} {amount}
+           {amount.toLocaleString('vi-VN')}{data.isMoney && " VNĐ"}
         </span>
         <span className="link">{data.link}</span>
       </div>

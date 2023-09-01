@@ -216,7 +216,7 @@ const Reserve = ({ setOpen, tourId, tour, startDate, endDate }) => {
                     Số khách tối đa: <b>{item?.maxPeople}</b>  
                     {/* / <b>{item?.tripNumbers.length}</b> options */}
                   </div>
-                  <div className="rPrice">Giá: + {item?.price-100} %</div>
+                  <div className="rPrice">Giá: + {item?.price} %</div>
                 </div>
                 {/* <div className="rSelectTrips">
                   {item.tripNumbers && item.tripNumbers.map((tripNumber) => (
@@ -244,17 +244,17 @@ const Reserve = ({ setOpen, tourId, tour, startDate, endDate }) => {
                 <div className="rItemInfo">
                   <div className="rTitle">{item?.title}</div>
                   <div className="rDesc">{item?.description}</div>
-                  <div className="rPrice">Giá: {item?.price}</div>
+                  <div className="rPrice">Giá: {item?.price.toLocaleString('vi-VN')}</div>
                 </div>
               </label>
             )})}
           </div>
         </div>
-        <span className="title">Mã giảm giá</span>
+        <div className="title1">Mã giảm giá</div>
         <input ref={discountRef} onChange={onChangeDiscount} type="text" className="input-01" placeholder="Nhập mã giảm giá nếu có"/>
         <button onClick={handleClick} className="rButton">
-          {!discountSelected && <span>Đặt ngay với giá {caculatePrice()} VNĐ </span>}
-          {discountSelected && <span>Đặt ngay với giá {caculatePrice()} VNĐ (đã giảm {discountSelected.value}%)</span>}
+          {!discountSelected && <span>Đặt ngay với giá {caculatePrice().toLocaleString('vi-VN')} VNĐ </span>}
+          {discountSelected && <span>Đặt ngay với giá {caculatePrice().toLocaleString('vi-VN')} VNĐ (đã giảm {discountSelected.value}%)</span>}
         </button>
       </div>
     </div>
